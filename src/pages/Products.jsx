@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useSearchParams } from "react-router-dom";
 import useFetch from '../components/home/useFetch'
 import ErrorMsg from "../components/fetch/ErrorMsg";
 import Loading from "../components/fetch/Loading";
@@ -7,39 +8,61 @@ import down from '../assets/imgs/down.png'
 import ProductCard from '../sections/home/ProductCard'
 import Pagination from "../components/products/Pagination";
 const Products = () => {
-  const [ productsPerPage, setProductsPerPage ] = useState(12);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ search, setSearch ] = useState("")
+  const [ searchTerm, setSearchTerm ] = useState("")
   const [ catSearch, setCatSearch ] = useState("")
   const [ menuToggle, setMenuToggle ] = useState(false);
+  const [ searchParams, setSearchParams ] = useSearchParams()
+  
+  const productsPerPage = 12
+  const apiUrl = `https://api.cristalux.store/api/v1/products/?page=${currentPage}`;
+  console.log(apiUrl);
+
   const {
     data: products,
     isPending,
     error,
-  } = useFetch("http://localhost:8000/data");
+  } = useFetch(apiUrl);
+  console.log(products);
+
+      const indexOfLastProduct = currentPage * productsPerPage;
+      const indexOfFirstPost = indexOfLastProduct - productsPerPage;
+      const currentProducts = products.slice(
+        indexOfFirstPost,
+        indexOfLastProduct
+      );
+
+    const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
   
-  const searchedProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // const searchedProducts = products.filter((product) =>
+  //   product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
-  const searchedCatProducts = products.filter((product) =>
-    product.category.toLowerCase().includes(catSearch.toLowerCase())
-  );
+  
+  // const typeFilter = searchParams.get("category");
+  
+  // const filteredData = typeFilter
+  //   ? searchedProducts.filter(
+  //       (product) => product.category.toLowerCase() === typeFilter.toLowerCase()
+  //     )
+  //     : searchedProducts;
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstPost = indexOfLastProduct - productsPerPage;
-  const currentProducts = searchedProducts.slice(
-    indexOfFirstPost,
-    indexOfLastProduct
-  );
 
-    const handleSearch = (event) => {
-          setSearch(event.target.value);
-        };
 
-    const handleCatSearch = (event) => {
-          setCatSearch(event.target.value);
-        };
+      
+  //     const searchedCatProducts = products.filter((product) =>
+  //       product.category.toLowerCase().includes(catSearch.toLowerCase())
+  //     );
+
+    // const handleSearchName = (event) => {
+    //       setSearchTerm(event.target.value);
+    //     };
+
+    // const handleCatSearch = (event) => {
+    //       setCatSearch(event.target.value);
+    //     };
 
   return (
     <main className="lg:flex lg:min-h-[100vh]">
@@ -55,7 +78,7 @@ const Products = () => {
             </div>
             <div className="w-[90%] mx-auto my-5">
               <p className="text-[#7E7E7E] text-xl">
-                Showing {productsPerPage} - {searchedProducts.length}
+                Showing 
               </p>
             </div>
             <div
@@ -85,7 +108,7 @@ const Products = () => {
                     : ""
                 } w-[90%]  mx-auto px-2 transition-all min-h-[10px] ease-out duration-300`}
               >
-                {[...new Set(products.map((product) => product.category))].map(
+                {/* {[...new Set(products.map((product) => product.category))].map(
                   (category) => {
                     const productCat = products.find(
                       (product) => product.category === category
@@ -100,22 +123,27 @@ const Products = () => {
                             : "hidden  transition-all ease-in duration-300"
                         }`}
                       >
-                        <h2 className="text-cristalux capitalize text-2xl py-2">
+                        <h2
+                          onClick={() =>
+                            setSearchParams({ cat: `${category}` })
+                          }
+                          className="text-cristalux capitalize text-2xl py-2"
+                        >
                           {category}
                         </h2>
                       </div>
                     );
                   }
                 )}
-                ;
+                ; */}
               </div>
             </div>
             <div className="w-[70%] mx-auto">
               <input
                 type="text"
                 placeholder="search for products"
-                value={search}
-                onChange={handleSearch}
+                value={searchTerm}
+                // onChange={handleSearchName}
                 className="border-2 border-black w-full rounded-md px-2 py-1 capitalize"
               />
             </div>
@@ -124,14 +152,14 @@ const Products = () => {
                 <ProductCard key={index} product={product} />
               ))}
             </div>
-            <Pagination
+            {/* <Pagination
               productsPerPage={productsPerPage}
-              totalProducts={searchedProducts.length}
+              totalProducts={filteredData.length}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
-            />
+            /> */}
           </section>
-          <aside className="lg:w-[20%]">
+          {/* <aside className="lg:w-[20%] max-sm:hidden sm:hidden md:hidden lg:block">
             <div className="py-10 w-[90%] mx-auto">
               <input
                 className="w-full h-[40px] px-2 capitalize border-2 border-cristalux bg-[#2B2B2B] text-white"
@@ -143,25 +171,38 @@ const Products = () => {
               <h2 className="py-5 text-cristalux text-2xl capitalize">
                 categories
               </h2>
-                {[...new Set(searchedCatProducts.map((product) => product.category))].map(
-                  (category) => {
-                    const productCat = products.find(
-                      (product) => product.category === category
-                    );
+              {[
+                ...new Set(
+                  searchedCatProducts.map((product) => product.category)
+                ),
+              ].map((category) => {
+                const productCat = products.find(
+                  (product) => product.category === category
+                );
 
-                    return (
-                      <div
-                        key={category}
-                      >
-                        <h2 className="text-cristalux capitalize text-lg py-2">
-                          {category}
-                        </h2>
-                      </div>
-                    );
-                  }
-                )}
+                return (
+                  <div key={category}>
+                    <h2
+                      onClick={() =>
+                        setSearchParams({ category: `${category}` })
+                      }
+                      className="text-cristalux capitalize text-lg py-2 cursor-pointer"
+                    >
+                      {category}
+                    </h2>
+                  </div>
+                );
+              })}
+              {typeFilter ? (
+                <button
+                  className="bg-black text-white py-1 px-4 rounded-md shadow-md font-bold"
+                  onClick={() => setSearchParams({})}
+                >
+                  All vans
+                </button>
+              ) : null}
             </div>
-          </aside>
+          </aside> */}
         </>
       )}
     </main>

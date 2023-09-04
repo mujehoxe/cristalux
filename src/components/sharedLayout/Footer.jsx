@@ -25,62 +25,13 @@ const Footer = () => {
             et service supérieurs.
           </p>
         </div>
-        <div className="flex items-end justify-center flex-row-reverse sm:hidden">
-          <div className="px-10 md:px-16">
-            <ul className="list-disc text-cristalux">
-              <NavLink
-                to={"/"}
-                className={({ isActive }) => (isActive ? "font-bold" : "")}
-              >
-                <li className="menuLink my-9 sm:my-5 md:my-6 md:text-md  w-[100px]">
-                  accueil
-                </li>
-              </NavLink>
-              <NavLink
-                to={"#about"}
-                className={({ isActive }) => (isActive ? "font-bold" : "")}
-              >
-                <li className="menuLink my-9 sm:my-5 md:my-6 md:text-md  w-[140px]">
-                  À propos de nous
-                </li>
-              </NavLink>
-              <NavLink
-                to={"products"}
-                className={({ isActive }) => (isActive ? "font-bold" : "")}
-              >
-                <li className="menuLink my-9 sm:my-5 md:my-6 md:text-md  w-[100px]">
-                  nos produits
-                </li>
-              </NavLink>
-            </ul>
-          </div>
-          <div className="socials py-2 px-5 w-full">
-            <h2 className="md:hidden text-lg text-cristalux uppercase">
-              Contactez-nous
-            </h2>
-            <div className="py-2 md:px-5">
-              <Socials
-                link={"https://www.facebook.com/profile.php?id=100068769864798"}
-                image={facebook}
-                title={"Cristalux"}
-              />
-              <Socials
-                link={"https://www.instagram.com/cristalux_deco/"}
-                image={instagram}
-                title={"cristalux_deco"}
-              />
-              <Socials link={"#"} image={phone} title={"0550 74 22 00"} />
-              <Socials link={"#"} image={phone} title={"0550 74 22 00"} />
-            </div>
-          </div>
-        </div>
-        <div className="px-10 md:px-16 max-sm:hidden">
-          <ul className="list-disc text-cristalux">
+        <div className="px-10 md:px-16">
+          <ul className="list-disc text-cristalux max-sm:flex max-sm:gap-5 max-sm:flex-wrap">
             <NavLink
               to={"/"}
               className={({ isActive }) => (isActive ? "font-bold" : "")}
             >
-              <li className="menuLink my-6 sm:my-5 md:my-6 md:text-md  w-[100px]">
+              <li className="menuLink my-2 sm:my-5 md:my-6 md:text-md  w-[100px]">
                 accueil
               </li>
             </NavLink>
@@ -88,7 +39,7 @@ const Footer = () => {
               to={"#about"}
               className={({ isActive }) => (isActive ? "font-bold" : "")}
             >
-              <li className="menuLink my-6 sm:my-5 md:my-6 md:text-md  w-[140px]">
+              <li className="menuLink my-2 sm:my-5 md:my-6 md:text-md  w-[140px]">
                 À propos de nous
               </li>
             </NavLink>
@@ -96,13 +47,13 @@ const Footer = () => {
               to={"products"}
               className={({ isActive }) => (isActive ? "font-bold" : "")}
             >
-              <li className="menuLink my-6 sm:my-5 md:my-6 md:text-md  w-[100px]">
+              <li className="menuLink my-2 sm:my-5 md:my-6 md:text-md  w-[100px]">
                 nos produits
               </li>
             </NavLink>
           </ul>
         </div>
-        <div className="socials py-2 px-5 w-full max-sm:hidden">
+        <div className="socials py-2 px-5 w-full ">
           <h2 className="md:hidden text-lg text-cristalux uppercase">
             Contactez-nous
           </h2>

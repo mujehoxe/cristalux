@@ -5,22 +5,33 @@ import Products from './pages/Products'
 import Product from './pages/Product'
 import Checkout from './pages/Checkout'
 import Error from "./pages/Error"
-
+import Details from "./components/product/Details"
+import MoreDetails from "./components/product/MoreDetails"
+import Preview from "./components/product/Preview"
+import Cart from "./pages/Cart"
+import "react-toastify/dist/ReactToastify.css"
+import { ToastContainer } from "react-toastify"
 
 const App = () => {
   return (
     <BrowserRouter>
-     <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="products" element={<Products />} />
-        <Route path="products/:id" element={<Product />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="*" element={<Error />} />
-      </Route>
-     </Routes>
+    <ToastContainer />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<Product />}>
+            <Route index element={<Details />} />
+            <Route path="preview" element={<Preview />} />
+            <Route path="moreDetails" element={<MoreDetails />} />
+          </Route>
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;

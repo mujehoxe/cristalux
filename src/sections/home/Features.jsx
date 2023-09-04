@@ -5,7 +5,7 @@ import delivery from "../../assets/imgs/delivery.png";
 const Features = () => {
   return (
     <section className="py-10">
-      <div className="lg:grid lg:grid-cols-3 lg:justify-center lg:items-center">
+      <div className="md:grid md:grid-cols-3 md:justify-center md:items-center">
         <Feature
           image={onlineShop}
           title={"shop online with us"}

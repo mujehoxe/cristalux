@@ -7,17 +7,27 @@ import About from '../sections/home/About'
 import Whyus from "../sections/home/Whyus";
 import Order from "../sections/home/Order";
 import Features from "../sections/home/Features";
+import { useEffect, useState } from "react";
 
 
 const Home = () => {
-  const {
-    data: products,
-    isPending,
-    error,
-  } = useFetch("http://localhost:8000/data");
+  const [ products, setProducts ] = useState([]);
+  const [ error, setError ] = useState(false)
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const data = await fetch("https://api.cristalux.store/api/v1/latest-products/");
+            const prodcuts = await data.json();
+            setProducts(prodcuts);
+        } catch (error) {
+              setError(error.message);
+            }
+          };
+          getProducts();
+        }, []);
+
   return (
     <main>
-      {isPending && <Loading />}
       {error && <ErrorMsg error={error}/>}
       {products && (
         <>
@@ -26,7 +36,7 @@ const Home = () => {
           <About />
           <Whyus />
           <Order />
-          <Features />
+          <Features /> 
         </>
       )}
     </main>
