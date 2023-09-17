@@ -7,16 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-
 const Slider = ({ products }) => {
   const [slidesPerView, setSlidesPerView] = useState(6);
   const [spaceBetween, setSpaceBetween] = useState(20);
   const swiperRef = useRef(null);
-
-  const latestProducts = (products) => {
-    const latestProducts = products.slice(0, 7).sort((a, b) => a.id - b.id);
-    return latestProducts;
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -86,16 +80,18 @@ const Slider = ({ products }) => {
         spaceBetween={spaceBetween}
         className="mySwiper h-full w-[90%] mx-auto"
       >
-        {latestProducts(products).map((product) => (
-          <SwiperSlide className="" key={product.id}>
-            <div className="py-10 mx-auto flex justify-center">
-              <ProductCard product={product} />
-            </div>
-          </SwiperSlide>
-        ))}
+        {products &&
+          products.length &&
+          products.map((product) => (
+            <SwiperSlide className="" key={product.id}>
+              <div className="py-10 mx-auto flex justify-center">
+                <ProductCard product={product} />
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
-}
+};
 
-export default Slider
+export default Slider;

@@ -4,35 +4,28 @@ import { addToCart, getTotal } from "../../features/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-const ProductCard = ({ product }) => {
-  const maxLength = 60;
-  const limitedText = (text, limit) => {
-    if (text.length <= limit) {
-      return text;
-    } else {
-      return text.slice(0, limit) + "...";
-    }
-  };
+const ProductCard = ({ product, size }) => {
+  const discount = product.percentage;
 
-  const discount = product.discount * 100
-
-  const theLimitedText = limitedText(product.description, maxLength);
-  const dispath = useDispatch()
+  const dispath = useDispatch();
 
   const handleAddToCart = (product) => {
-    dispath(addToCart(product))
-    dispath(getTotal())
-  }
+    dispath(addToCart(product));
+    dispath(getTotal());
+  };
+  // w-[260px] h-[420px] xs2:w-[300px] xs2:h-[460px] md:h-[420px]
 
   return (
-    <div className="bg-white rounded-lg w-[260px] h-[420px] xs2:w-[300px] xs2:h-[460px] md:h-[420px] shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer">
+    <div
+      className={`bg-white rounded-lg  shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer ${size}`}
+    >
       <div className="relative bg-red-300  h-[65%]">
         <img
-          src={product.get_thumbnail}
+          src={"https://cristalux-app.onrender.com/api/v1/" + product.thumbnail}
           className="w-full h-full object-cover"
           alt={product.name}
         />
-        {discount !== 0 && (
+        {discount !== null && (
           <div className="absolute top-0 right-0 p-2 bg-black text-white font-bold rounded-bl-[50%]">
             {discount}%
           </div>
@@ -55,7 +48,9 @@ const ProductCard = ({ product }) => {
           />
         </div>
         <h2 className="text-xl font-bold">{product.name}</h2>
-        <p className="text-sm text-gray-600 h-[40px]">{theLimitedText}</p>
+        <p className="text-sm text-gray-600 text-ellipsis overflow-hidden">
+          {product.description}
+        </p>
         <div className="flex justify-between items-center mt-4">
           <h3 className="text-base font-bold">{product.price} DA</h3>
           <Link

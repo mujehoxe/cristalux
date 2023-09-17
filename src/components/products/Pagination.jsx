@@ -37,7 +37,7 @@ const Pagination = ({
             <li key={number}>
               <div
                 className={`${
-                  currentPage === number ? "bg-[#266859]" : "bg-gray-400"
+                  currentPage === number ? "bg-cristaluxBrown" : "bg-gray-400"
                 } w-[20px] h-[20px] rounded-[50%] `}
                 onClick={() => handlePageChange(number)}
               ></div>
@@ -52,8 +52,8 @@ const Pagination = ({
                 onClick={() => handlePageChange(number)}
                 className={`${
                   currentPage === number
-                    ? "text-[#266859]"
-                    : "text-[#7C7C7C] font-bold"
+                    ? "text-cristaluxBrown font-bold"
+                    : "text-[#7C7C7C]"
                 } text-xl`}
               >
                 {number}
