@@ -58,6 +58,11 @@ const Slider = ({ products }) => {
     };
   }, []);
 
+
+  const cardSize =
+    "w-[260px] h-[400px] xs:w-[200px] xs:h-[300px] xs2:w-[230px] xs2:h-[350px] md:w-[260px] md:h-[400px]";
+
+
   return (
     <div className="relative slider w-full h-full flex flex-col justify-start">
       <div className="w-[25px] xs2:w-[25px] md:w-[40px] h-[150px] md:h-[200px] bg-cristaluxBrown absolute left-0 top-[50%] translate-y-[-50%] flex items-center justify-start xs2:justify-center">
@@ -84,8 +89,8 @@ const Slider = ({ products }) => {
           products.length &&
           products.map((product) => (
             <SwiperSlide className="" key={product.id}>
-              <div className="py-10 mx-auto flex justify-center">
-                <ProductCard product={product} />
+              <div className="py-10 mx-auto flex justify-center  items-end">
+                <ProductCard product={product} size={cardSize} />
               </div>
             </SwiperSlide>
           ))}

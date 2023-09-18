@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart, getTotal } from "../../features/cartSlice";
+import { addToCartWithQuantity, getTotal } from "../../features/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 const ProductCard = ({ product, size }) => {
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const discount = product.percentage;
 
-  const dispath = useDispatch();
+
+  
+
+  const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
-    dispath(addToCart(product));
-    dispath(getTotal());
+     dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
+    dispatch(getTotal());
   };
+
   // w-[260px] h-[420px] xs2:w-[300px] xs2:h-[460px] md:h-[420px]
 
   return (
@@ -20,11 +26,7 @@ const ProductCard = ({ product, size }) => {
       className={`bg-white rounded-lg  shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer ${size}`}
     >
       <div className="relative bg-red-300  h-[65%]">
-        <img
-          src={"https://cristalux-app.onrender.com/api/v1/" + product.thumbnail}
-          className="w-full h-full object-cover"
-          alt={product.name}
-        />
+
         {discount !== null && (
           <div className="absolute top-0 right-0 p-2 bg-black text-white font-bold rounded-bl-[50%]">
             {discount}%

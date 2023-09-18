@@ -1,61 +1,86 @@
 import { Link, useParams, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cartSlice";
 import useFetch from "../components/home/useFetch";
 import Loading from "../components/fetch/Loading";
 import ErrorMsg from "../components/fetch/ErrorMsg";
 import { useState, useEffect } from "react";
 import Slider from "../components/products/Slider";
+import ProductImages from "../components/product/ProductImages";
+import Price from "../components/product/Price";
+import Quantity from "../components/product/Quantity";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { addToCart } from "../features/cartSlice";
+import { addToCartWithQuantity } from "../features/cartSlice";
+import LatestProducts from "../sections/home/LatestProducts";
 
 const Product = () => {
-  const [num, setNum] = useState(1);
+  const [product, setProduct] = useState(null);
+  const [error, setError] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selected quantity
   const { productId } = useParams();
-  const {
-    data: product,
-    isPending,
-    error,
-  } = useFetch(`https://cristalux-app.onrender.com/products/${productId}`);
-  const [currentProduct, setCurrentProduct] = useState(null);
 
-  // console.log(product);
-  console.log(product);
+  const dispatch = useDispatch();
+
+const handleAddToCart = () => {
+  // Use the new addToCartWithQuantity action with the selected quantity
+  dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
+};
+
   useEffect(() => {
-    if (product) {
-      setCurrentProduct(product);
-    }
-  }, [product]);
-
-
-
-  const increase = () => {
-    if (num < product.quantity) {
-      setNum(num + 1);
-    }
-  };
-
-  const decrease = () => {
-    if (num > 1) {
-      setNum(num - 1);
-    }
-  };
-
-  const offerPercentage = product.offer / 100;
-  const discountedPrice = product.price * (1 - offerPercentage);
-
-    const dispath = useDispatch();
-
-    const handleAddToCart = (product) => {
-      dispath(addToCart(product));
+    const getProduct = async () => {
+      try {
+        const data = await fetch(
+          `https://cristalux-app.onrender.com/api/v1/products/${productId}`
+        );
+        const fetchedProduct = await data.json();
+        setProduct(fetchedProduct);
+      } catch (error) {
+        setError(error.message);
+      }
     };
+    getProduct();
+  }, [productId]);
+
+  // Update selectedQuantity when Quantity component changes it
+  const handleQuantityChange = (newQuantity) => {
+    setSelectedQuantity(newQuantity);
+  };
+
   return (
-    <main>
-      {isPending && <Loading />}
+    <main className="xs:bg-red-300 xs2:bg-red-500 sm:bg-red-950 md:bg-green-300">
       {error && <ErrorMsg />}
       {product && (
         <>
-        <div>
-          <h2>{product.id}</h2>
-        </div>
+          <div className="p-4">
+            <h1 className="text-xl">
+              {product.category.name}/{product.name}
+            </h1>
+            <ProductImages product={product} />
+            <Price product={product} />
+            {product.description && <p>{product.description}</p>}
+            <Quantity
+              product={product}
+              selectedQuantity={selectedQuantity} // Pass selectedQuantity as a prop
+              onQuantityChange={handleQuantityChange} // Pass a callback to update selectedQuantity
+            />
+            <div className="my-7 flex items-center justify-center gap-x-4">
+              <button
+                onClick={handleAddToCart}
+                className="text-cristaluxBrown border-2 border-cristaluxBrown px-4 py-2 flex items-center gap-3 rounded-md"
+              >
+                <FontAwesomeIcon className="" icon={faCartShopping} />
+                <span className="font-semibold capitalize">add to cart</span>
+              </button>
+              <button
+                onClick={handleAddToCart}
+                className="uppercase text-cristalux font-semibold bg-cristaluxBrown py-2 px-6 rounded-md"
+              >
+                buy now
+              </button>
+            </div>
+          </div>
+            <LatestProducts />
         </>
       )}
     </main>

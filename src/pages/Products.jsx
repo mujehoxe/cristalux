@@ -56,7 +56,7 @@ useEffect(() => {
 
 
 
-  const cardSize = 'w-[260px] h-[400px] xs:w-[200px] xs:h-[300px] xs2:w-[230px] xs2:h-[350px] md:w-[260px] md:h-[400px]'
+  const cardSize = 'w-[260px] h-[400px] xs:w-[200px] xs:h-[300px] xs2:w-[230px] xs2:h-[350px] md:w-[260px] md:h-[400px]';
 
 
   return (

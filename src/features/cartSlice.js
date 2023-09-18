@@ -78,11 +78,46 @@ const cartSlice = createSlice({
 
             state.cartTotalQuantity = quantity
             state.cartTotalAmount = total
+        },
+   addToCartWithQuantity(state, action) {
+      const { product, quantity } = action.payload;
+      const itemIndex = state.cartItems.findIndex((item) => item.id === product.id);
+
+      if (itemIndex >= 0) {
+        // Check if adding quantity exceeds the available quantity
+        if (state.cartItems[itemIndex].cartQuantity + quantity > product.quantity) {
+          toast.error(`Cannot add more than available quantity for ${product.name}`, {
+            position: "bottom-left",
+          });
+          return; // Do not add to cart if it exceeds available quantity
         }
+
+        state.cartItems[itemIndex].cartQuantity += quantity;
+        toast.info(`Added ${quantity} ${state.cartItems[itemIndex].name}(s) to cart`, {
+          position: "bottom-left",
+        });
+      } else {
+        // Check if adding quantity exceeds the available quantity
+        if (quantity > product.quantity) {
+          toast.error(`Cannot add more than available quantity for ${product.name}`, {
+            position: "bottom-left",
+          });
+          return; // Do not add to cart if it exceeds available quantity
+        }
+
+        const tempProduct = { ...product, cartQuantity: quantity };
+        state.cartItems.push(tempProduct);
+        toast.success(`${quantity} ${product.name}(s) added to cart`, {
+          position: "bottom-left",
+        });
+      }
+
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    },
     },
 });
 
 
-export const { addToCart, removeItem, decreaseCart, clearCart, getTotal } = cartSlice.actions;
+export const { addToCart, removeItem, decreaseCart, clearCart, getTotal, addToCartWithQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;

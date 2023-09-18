@@ -1,24 +1,48 @@
 
 
+import { useEffect, useState } from "react";
 import Slider from "../../components/products/Slider";
+import ErrorMsg from "../../components/fetch/ErrorMsg";
 
-const LatestProducts = ({ products }) => {
+const LatestProducts = () => {
+
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(false);
+    
+  useEffect(() => {
+      const getProducts = async () => {
+        try {
+          const data = await fetch(
+            "https://cristalux-app.onrender.com/api/v1/products/latest"
+          );
+          setProducts(await data.json());
+        } catch (error) {
+          setError(error.message);
+        }
+      };
+      getProducts();
+    }, [products]);
 
 
 
   return (
+    <main>
+    {error && <ErrorMsg />}
+    {products && (
     <section className="h-[101vh] pt-4">
       <div className="w-[90%] mx-auto text-center py-5">
         <h2 className="title capitalize text-3xl xs2:text-4xl md:text-5xl  font-bold text-[#373737]">
           Derniers produits
         </h2>
-        <p className="capitalize py-1 text-xs xs2:text-sm md:text-base lg:text-lg md:w-[70%] md:mx-auto">
+        <p className="capitalize py-1 text-sm xs2:text-sm md:text-base lg:text-lg md:w-[70%] md:mx-auto">
           Explorez notre gamme exquise. Découvrez l{"'"}art de décorer avec
           style. Transformez votre maison en un havre de beauté.
         </p>
       </div>
       <Slider products={products} />
     </section>
+    )}
+    </main>
   );
 };
 
