@@ -59,13 +59,17 @@ const Slider = ({ products }) => {
   }, []);
 
 
-  const cardSize =
-    "w-[260px] h-[400px] xs:w-[200px] xs:h-[300px] xs2:w-[230px] xs2:h-[350px] md:w-[260px] md:h-[400px]";
+   const cardSize =
+     "w-[290px] h-[480px] xs2:w-[230px] xs2:h-[400px] sm:w-[300px] sm:h-[420px] md:w-[240px] md:h-[490px] lg:w-[300px] lg:h-[480px] xl:w-[300px] xl:h-[430px]";
+
+    const lineClamp = "line-clamp-2";
+    
+  
 
 
   return (
-    <div className="relative slider w-full h-full flex flex-col justify-start">
-      <div className="w-[25px] xs2:w-[25px] md:w-[40px] h-[150px] md:h-[200px] bg-cristaluxBrown absolute left-0 top-[50%] translate-y-[-50%] flex items-center justify-start xs2:justify-center">
+    <div className="relative slider w-full h-full flex flex-col justify-start ">
+      <div className="w-[25px] xs2:w-[25px] md:w-[40px] h-[150px] md:h-[200px]   bg-cristaluxBrown absolute left-0 top-[50%] translate-y-[-50%] flex items-center justify-start xs2:justify-center">
         <FontAwesomeIcon
           icon={faChevronLeft}
           className="cursor-pointer text-white text-sm md:text-2xl"
@@ -83,14 +87,14 @@ const Slider = ({ products }) => {
         slidesPerView={slidesPerView}
         ref={swiperRef}
         spaceBetween={spaceBetween}
-        className="mySwiper h-full w-[90%] mx-auto"
+        className="mySwiper w-[90%] h-[80%] mx-auto"
       >
         {products &&
           products.length &&
           products.map((product) => (
-            <SwiperSlide className="" key={product.id}>
-              <div className="py-10 mx-auto flex justify-center  items-end">
-                <ProductCard product={product} size={cardSize} />
+            <SwiperSlide className="flex flex-col justify-center " key={product.id}>
+              <div className="py-10 mx-auto flex flex-col justify-center  items-end">
+                <ProductCard product={product} size={cardSize} lineClamp={lineClamp} />
               </div>
             </SwiperSlide>
           ))}

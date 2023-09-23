@@ -27,11 +27,13 @@ const Cart = () => {
   };
 
   const handleDecrease = (cartItem) => {
+    setSelectedQuantity(selectedQuantity - 1);
     dispatch(decreaseCart(cartItem));
     dispatch(getTotal());
   };
 
   const handleIncrease = (product) => {
+    setSelectedQuantity(selectedQuantity + 1);
     dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
     dispatch(getTotal());
   };
@@ -84,9 +86,9 @@ const Cart = () => {
           </div>
         </div>
         {cart.cartItems.length === 0 ? null : (
-        <div className="p-4 mt-10 w-[96%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
-          <Summary cartItems={cart.cartItems} cart={cart} />
-        </div>
+          <div className="p-4 mt-10 w-[96%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
+            <Summary cartItems={cart.cartItems} cart={cart} />
+          </div>
         )}
       </div>
     </section>

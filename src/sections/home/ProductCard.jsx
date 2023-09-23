@@ -5,28 +5,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-const ProductCard = ({ product, size }) => {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
+const ProductCard = ({ product, size, lineClamp }) => {
+  const [selectedQuantity, setSelectedQuantity] = useState(0);
   const discount = product.percentage;
-
-
-  
 
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
-     dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
+    dispatch(
+      addToCartWithQuantity({ product, quantity: selectedQuantity + 1 })
+    );
     dispatch(getTotal());
   };
-
-  // w-[260px] h-[420px] xs2:w-[300px] xs2:h-[460px] md:h-[420px]
 
   return (
     <div
       className={`bg-white rounded-lg  shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer ${size}`}
     >
-      <div className="relative bg-red-300  h-[65%]">
-
+      <div className="relative bg-red-300 h-[65%]  w-full">
+        <img
+          className="w-full h-full object-fill"
+          src={"https://cristalux-app.onrender.com/" + product.thumbnail}
+          alt=""
+        />
         {discount !== null && (
           <div className="absolute top-0 right-0 p-2 bg-black text-white font-bold rounded-bl-[50%]">
             {discount}%
@@ -41,7 +42,7 @@ const ProductCard = ({ product, size }) => {
           </button>
         </div>
       </div>
-      <div className="py-7 px-4 lg:py-4 relative h-[35%]">
+      <div className="py-3 px-4 lg:py-4 relative h-[35%]  ">
         <div className="absolute right-0 top-0 w-[40px] h-[40px] bg-cristaluxBrown flex items-center justify-center lg:hidden">
           <FontAwesomeIcon
             icon={faCartShopping}
@@ -49,14 +50,22 @@ const ProductCard = ({ product, size }) => {
             onClick={() => handleAddToCart(product)}
           />
         </div>
-        <h2 className="text-xl font-bold">{product.name}</h2>
-        <p className="text-sm text-gray-600 text-ellipsis overflow-hidden">
-          {product.description}
-        </p>
-        <div className="flex justify-between items-center mt-4">
-          <h3 className="text-base font-bold">{product.price} DA</h3>
+        <h2 className="text-xl xs:text-sm sm:w-[90%] sm:text-xl font-bold w-[90%] xs:w-[80%]">
+          {product.name}
+        </h2>
+        <div className="py-2">
+          <p
+            className={`${lineClamp}  text-sm text-gray-600  w-[90%]`}
+          >
+            {product.description && product.description}
+          </p>
+        </div>
+        <div className="mt-2 flex justify-between  items-center">
+          <h3 className="text-base font-bold xs:text-xs xs2:text-base ">
+            {product.price} DA
+          </h3>
           <Link
-            className="ml-2 text-xs xs2:px-0 md:px-4 px-4 py-2 font-bold bg-cristaluxBrown text-white rounded-lg hover:bg-yellow-500 transition-colors duration-300"
+            className="text-base xs:text-xs xs2:text-sm bg-cristaluxBrown text-white px-6 py-2 xs:py-2 xs:px-2 rounded-md"
             to={`/products/${product.id}`}
           >
             Voir les détails
