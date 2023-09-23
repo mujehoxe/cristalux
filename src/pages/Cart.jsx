@@ -42,10 +42,21 @@ const Cart = () => {
     dispatch(clearCart(cartItem));
   };
 
+    const calculateTotalPrice = (cartItem) => {
+      if (cartItem.percentage) {
+        return (
+          (cartItem.price - (cartItem.price * cartItem.percentage) / 100) *
+          cartItem.cartQuantity
+        ).toFixed(2); // Assuming two decimal places for currency
+      } else {
+        return (cartItem.price * cartItem.cartQuantity).toFixed(2);
+      }
+    };
+
   return (
-    <section className="w-full min-h-[100vh] bg-gray-100">
-      <div>
-        <div className="p-4 mt-10 w-[96%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
+    <section className="w-full min-h-[100vh]  ">
+      <div className="lg:flex">
+        <div className="p-4  mt-10 w-[96%] md:w-[70%] lg:w-[60%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl capitalize font-bold">cart</h2>
             {cart.cartItems.length === 0 ? null : (
@@ -74,6 +85,7 @@ const Cart = () => {
                 {cart.cartItems &&
                   cart.cartItems.map((cartItem) => (
                     <CartDetails
+                      totalPrice={calculateTotalPrice(cartItem)}
                       key={cartItem.id}
                       cartItem={cartItem}
                       handleIncrease={handleIncrease}
@@ -86,8 +98,8 @@ const Cart = () => {
           </div>
         </div>
         {cart.cartItems.length === 0 ? null : (
-          <div className="p-4 mt-10 w-[96%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
-            <Summary cartItems={cart.cartItems} cart={cart} />
+          <div className="relativ p-4 mt-10 w-[96%] md:w-[70%] lg:h-[25%] lg:w-[30%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
+            <Summary cartItems={cart.cartItems} cart={cart}  />
           </div>
         )}
       </div>

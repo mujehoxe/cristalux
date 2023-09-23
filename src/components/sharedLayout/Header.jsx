@@ -2,13 +2,14 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { NavLink, Link } from "react-router-dom";
 import menu from "../../assets/imgs/menu.png";
 import close from "../../assets/imgs/close.png";
-import cart from "../../assets/imgs/cart.png";
+import myCart from "../../assets/imgs/myCart.png";
 import logo from '../../assets/imgs/logo.png'
 import { useState } from "react";
 
 const Header = () => {
   const [navToggle, setNavToggle] = useState(false);
-  const {cartTotalQuantity} = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.cart);
+
 
   return (
     <header className="header w-full min-h-[40px] flex items-center justify-between z-20  px-3 py-4 sm:px-7 md:px-10 overflow-x-hidden">
@@ -23,10 +24,10 @@ const Header = () => {
       <div className="flex items-center gap-x-4 sm:flex-row-reverse">
         <div className="relative cart">
           <Link to={"cart"}>
-            <img src={cart} className="w-[30px] cursor-pointer" alt="cart" />
+            <img src={myCart} className="w-[30px] cursor-pointer" alt="cart" />
           </Link>
           <div className="absolute w-[27px] h-[27px] -top-[30%] -right-[50%]  flex items-center justify-center bg-cristalux border-2 border-black rounded-[50%]">
-            <span className="text-black font-bold">{cartTotalQuantity}</span>
+            <span className="text-black font-bold">{cart.cartItems.length}</span>
           </div>
         </div>
         <nav>

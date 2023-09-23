@@ -6,28 +6,33 @@ const CartDetails = ({
   handleIncrease,
   handleDecrease,
   handleRemoveFromCart,
+  totalPrice,
 }) => {
 
-
-    const calculateTotalPrice = () => {
-      if (cartItem.percentage) {
-        return (
-          cartItem.percentage -
-          cartItem.price * cartItem.cartQuantity
-        ).toFixed(2); // Assuming two decimal places for currency
-      } else {
-        return (cartItem.price * cartItem.cartQuantity).toFixed(2);
-      }
-    };
+  
 
   return (
-    <div className="mt-3 py-2 w-full flex items-center gap-x-3 border-b-2 shadow-md">
-      <div className="w-[100px] h-[100px] bg-gray-300 rounded-md shadow-sm"></div>
-      <div className="flex flex-col justify-center gap-2">
-        <h2 className="text-xl text-cristaluxBrown font-semibold">
-          {cartItem.name}
-        </h2>
-        <h2 className="uppercase text-cristaluxBrown font-medium">{calculateTotalPrice()} da</h2>
+    <div className="mt-3 rounded-md p-2 w-full bg-gray-100 flex  gap-x-3 border-b-2 shadow-md">
+      <div className="w-[100px] lg:w-[150px] h-[100px] lg:h-[150px] bg-gray-300 rounded-md shadow-sm"></div>
+      <div className="flex flex-col justify-around gap-2 p-2 w-[70%] mx-auto">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm xs:text-lg text-cristaluxBrown font-semibold">
+            {cartItem.name}
+          </h2>
+          <div className="flex flex-col justify-start items-end bg-red-300">
+            <FontAwesomeIcon
+              icon={faTrash}
+              className="text-red-500 text-right text-xl"
+              onClick={() => handleRemoveFromCart(cartItem)}
+            />
+          </div>
+        </div>
+        <div>
+          <h2 className="lg:w-[90%] lg:line-clamp-2 hidden xs2:block">{cartItem.description}</h2>
+          <h2 className="uppercase text-cristaluxBrown font-semibold">
+            {totalPrice} da
+          </h2>
+        </div>
         <div className="flex items-center w-[120px] justify-around  border-2 border-cristaluxBrown rounded-md">
           <FontAwesomeIcon
             className="text-cristaluxBrown text-base text-left"
@@ -43,13 +48,6 @@ const CartDetails = ({
             onClick={() => handleDecrease(cartItem)}
           />
         </div>
-      </div>
-      <div className="flex flex-col justify-start items-end w-[10%] h-[100px]">
-        <FontAwesomeIcon
-          icon={faTrash}
-          className="text-red-500 text-right text-xl"
-          onClick={() => handleRemoveFromCart(cartItem)}
-        />
       </div>
     </div>
   );
