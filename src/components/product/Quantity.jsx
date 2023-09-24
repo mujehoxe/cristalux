@@ -25,24 +25,24 @@ const Quantity = ({ product, selectedQuantity, onQuantityChange }) => {
   };
 
   return (
-    <div className="">
-      <h2 className="text-center text-cristaluxBrown text-3xl capitalize font-semibold">
+    <div className="my-4">
+      <h2 className="text-center text-cristaluxBrown text-3xl capitalize font-semibold lg:hidden">
         Quantity
       </h2>
-      <div className="my-5 w-[50%] mx-auto py-1 border-cristaluxBrown border-2 text-cristaluxBrown flex items-center justify-center gap-x-4">
+      <div className="lg:mx-0 lg:w-[30%] lg:gap-x-10 lg:py-2 my-5 w-[50%] md:w-[40%] mx-auto py-1 border-cristaluxBrown border-2 text-cristaluxBrown flex items-center justify-center gap-x-4">
         <FontAwesomeIcon
-          className="text-xl cursor-pointer"
+          className="text-xl md:text-2xl lg:text-lg cursor-pointer"
           icon={faChevronLeft}
           onClick={handleDecrement}
         />
         <input
           type="number"
-          className="w-10 text-center text-2xl"
+          className="w-10 text-center text-2xl lg:text-xl md:text-3xl bg-transparent pl-3"
           value={quantity}
           readOnly
         />
         <FontAwesomeIcon
-          className="text-xl cursor-pointer"
+          className="text-xl md:text-2xl lg:text-lg cursor-pointer"
           icon={faChevronRight}
           onClick={handleIncrement}
         />

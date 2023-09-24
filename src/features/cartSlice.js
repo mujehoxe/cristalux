@@ -76,7 +76,7 @@ const cartSlice = createSlice({
           toast.error(`Cannot add more than available quantity for ${product.name}`, {
             position: "bottom-left",
           });
-          return; // Do not add to cart if it exceeds available quantity
+          throw Error('Do not add to cart if it exceeds available quantity');
         }
 
         state.cartItems[itemIndex].cartQuantity += quantity;
@@ -89,7 +89,7 @@ const cartSlice = createSlice({
           toast.error(`Cannot add more than available quantity for ${product.name}`, {
             position: "bottom-left",
           });
-          return; // Do not add to cart if it exceeds available quantity
+          throw Error('Do not add to cart if it exceeds available quantity');
         }
 
         const tempProduct = { ...product, cartQuantity: quantity };

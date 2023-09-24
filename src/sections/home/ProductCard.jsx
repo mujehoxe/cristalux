@@ -11,6 +11,13 @@ const ProductCard = ({ product, size, lineClamp }) => {
 
   const dispatch = useDispatch();
 
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
   const handleAddToCart = (product) => {
     dispatch(
       addToCartWithQuantity({ product, quantity: selectedQuantity + 1 })
@@ -54,9 +61,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
           {product.name}
         </h2>
         <div className="py-2">
-          <p
-            className={`${lineClamp}  text-sm text-gray-600  w-[90%]`}
-          >
+          <p className={`${lineClamp}  text-sm text-gray-600  w-[90%]`}>
             {product.description && product.description}
           </p>
         </div>
@@ -67,6 +72,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
           <Link
             className="text-base xs:text-xs xs2:text-sm bg-cristaluxBrown text-white px-6 py-2 xs:py-2 xs:px-2 rounded-md"
             to={`/products/${product.id}`}
+            onClick={scrollToTop}
           >
             Voir les détails
           </Link>

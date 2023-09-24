@@ -29,7 +29,7 @@ const LatestProducts = () => {
     <main>
     {error && <ErrorMsg />}
     {products && (
-    <section className="h-[101vh] pt-4">
+    <section className=" py-10">
       <div className="w-[90%] mx-auto text-center py-5">
         <h2 className="title capitalize text-3xl xs2:text-4xl md:text-5xl  font-bold text-[#373737]">
           Derniers produits

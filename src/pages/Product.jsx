@@ -1,4 +1,4 @@
-import { Link, useParams, Outlet } from "react-router-dom";
+import { Link, useParams, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import useFetch from "../components/home/useFetch";
 import Loading from "../components/fetch/Loading";
@@ -13,6 +13,8 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { addToCart } from "../features/cartSlice";
 import { addToCartWithQuantity } from "../features/cartSlice";
 import LatestProducts from "../sections/home/LatestProducts";
+import { toast } from "react-toastify";
+import DesktopView from "../components/product/DesktopView";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
@@ -20,12 +22,29 @@ const Product = () => {
   const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selected quantity
   const { productId } = useParams();
 
+
   const dispatch = useDispatch();
 
-const handleAddToCart = () => {
-  // Use the new addToCartWithQuantity action with the selected quantity
-  dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
-};
+  const handleAddToCart = () => {
+    // Use the new addToCartWithQuantity action with the selected quantity
+    try {
+      dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
+    } catch (e) {
+      toast.error(e);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const handleBuyNow = () => {
+    try {
+      dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
+    } catch (e) {
+      toast.error(e);
+      return;
+    }
+    navigate("/checkout");
+  };
 
   useEffect(() => {
     const getProduct = async () => {
@@ -48,17 +67,29 @@ const handleAddToCart = () => {
   };
 
   return (
-    <main className="xs:bg-red-300 xs2:bg-red-500 sm:bg-red-950 md:bg-green-300">
+    <main className="">
       {error && <ErrorMsg />}
       {product && (
-        <>
-          <div className="p-4">
-            <h1 className="text-xl">
-              {product.category.name}/{product.name}
-            </h1>
-            <ProductImages product={product} />
+        <div className="lg:hidden">
+          <div className="p-2">
+            <div className="sm:[80%] md:w-[95%] sm:mx-auto">
+              <h1 className="text-2xl uppercase text-cristaluxBrown font-black">
+                {product.name}
+              </h1>
+              <h2 className="text-2xl uppercase text-cristaluxBrown font-semibold">
+                category:{" "}
+                <span className="font-bold">{product.category.name}</span>
+              </h2>
+            </div>
+            <div className="md:p-4">
+              <ProductImages product={product} />
+            </div>
             <Price product={product} />
-            {product.description && <p>{product.description}</p>}
+            {product.description && (
+              <p className="text-cristaluxBrown sm:text-lg font-medium sm:w-[80%] sm:mx-auto md:text-xl">
+                {product.description}
+              </p>
+            )}
             <Quantity
               product={product}
               selectedQuantity={selectedQuantity} // Pass selectedQuantity as a prop
@@ -73,16 +104,17 @@ const handleAddToCart = () => {
                 <span className="font-semibold capitalize">add to cart</span>
               </button>
               <button
-                onClick={handleAddToCart}
+                onClick={handleBuyNow}
                 className="uppercase text-cristalux font-semibold bg-cristaluxBrown py-2 px-6 rounded-md"
               >
                 buy now
               </button>
             </div>
           </div>
-            <LatestProducts />
-        </>
+          <LatestProducts />
+        </div>
       )}
+      <DesktopView handleAddToCart={handleAddToCart} handleBuyNow={handleBuyNow} product={product} selectedQuantity={selectedQuantity} onQuantityChange={handleQuantityChange} />
     </main>
   );
 };
