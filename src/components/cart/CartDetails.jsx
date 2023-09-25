@@ -26,7 +26,7 @@ const CartDetails = ({
           <div className="flex flex-col justify-start items-end bg-red-300">
             <FontAwesomeIcon
               icon={faTrash}
-              className="text-red-500 text-right text-xl"
+              className="text-red-500 text-right text-xl lg:cursor-pointer"
               onClick={() => handleRemoveFromCart(cartItem)}
             />
           </div>
@@ -41,7 +41,7 @@ const CartDetails = ({
         </div>
         <div className="flex items-center w-[120px] justify-around  border-2 border-cristaluxBrown rounded-md">
           <FontAwesomeIcon
-            className="text-cristaluxBrown text-base text-left"
+            className="text-cristaluxBrown text-base text-left lg:cursor-pointer"
             icon={faPlus}
             onClick={() => handleIncrease(cartItem)}
           />
@@ -49,7 +49,7 @@ const CartDetails = ({
             {cartItem.cartQuantity}
           </button>
           <FontAwesomeIcon
-            className="text-cristaluxBrown text-base"
+            className="text-cristaluxBrown text-base lg:cursor-pointer"
             icon={faMinus}
             onClick={() => handleDecrease(cartItem)}
           />

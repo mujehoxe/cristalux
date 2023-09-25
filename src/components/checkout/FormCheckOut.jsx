@@ -1,13 +1,17 @@
-import { useState } from "react";
-import Wilayas from "./Wilayas";
+import { useEffect, useState } from "react";
+import wilayasList from "./wilayasList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const FormCheckOut = ({ cart }) => {
-  const [wilaya, setWilaya] = useState(null);
+  const [selectedWilaya, setSelectedWilaya] = useState(wilayasList[0]); // Use the first wilaya as the default
+  const [popUp, setPopUp] = useState(false);
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     phoneNumber: "",
-    state: "", // This field should store the selected wilaya
+    state: "", 
     address: "",
     orderedProducts: [
       {
@@ -18,10 +22,16 @@ const FormCheckOut = ({ cart }) => {
     totalPrice: 0,
   });
 
-  const shippingPrice =
-    wilaya !== null
-      ? (cart.cartTotalAmount += wilaya.price)
-      : cart.cartTotalAmount;
+  const handleItemClick = (wilayaId) => {
+    const wilaya = wilayasList.find((wilaya) => wilaya.id === wilayaId);
+    setSelectedWilaya(wilaya);
+    setPopUp(false);
+  };
+
+  useEffect(() => {
+    // This effect will run after selectedWilaya has been updated
+    selectedWilaya;
+  }, [selectedWilaya]); // Add selectedWilaya as a dependency for the effect
 
   // Use useSelector to access the selected wilaya from Redux store
 
@@ -34,7 +44,8 @@ const FormCheckOut = ({ cart }) => {
     const updatedFormData = {
       ...formData,
       orderedProducts: products,
-      totalPrice: cart.cartTotalAmount,
+      totalPrice: totalPrice,
+      state:selectedWilaya.name
     };
 
     try {
@@ -71,6 +82,8 @@ const FormCheckOut = ({ cart }) => {
     });
   };
 
+  let totalPrice = cart.cartTotalAmount + selectedWilaya.shippingPrice;
+
   return (
     <div className="w-[95%] mx-auto py-2 bg-white flex flex-col items-center justify-center">
       <h2 className="text-cristaluxBrown capitalize font-semibold text-xl">
@@ -106,7 +119,35 @@ const FormCheckOut = ({ cart }) => {
           minLength={10}
           maxLength={10}
         />
-        <Wilayas wilaya={wilaya} setWilaya={setWilaya} />
+        <div
+          className={`relative flex items-center justify-between border-2 text-cristaluxBrown font-medium border-cristaluxBrown rounded-md shadow-md w-[300px] p-2 u`}
+          onClick={() => setPopUp((prev) => !prev)}
+        >
+          <h2 className={``}>
+            {selectedWilaya ? selectedWilaya.name : "Wilayas"}
+          </h2>
+          <FontAwesomeIcon icon={popUp ? faChevronUp : faChevronDown} />
+          {popUp && (
+            <div className="absolute bottom-14 -left-2 shadow-md rounded-md w-[90%] mx-auto bg-white h-[300px] overflow-y-scroll">
+              {wilayasList.map((wilaya) => (
+                <ul
+                  key={wilaya.id}
+                  onClick={() => handleItemClick(wilaya.id)}
+                  className={`border-2 ${
+                    selectedWilaya && wilaya.id === selectedWilaya.id
+                      ? "text-red-300"
+                      : ""
+                  } border-cristaluxBrown p-2  cursor-pointer`}
+                >
+                  <li className="flex items-center justify-between">
+                    <h2 className="text-lg">{wilaya.name}</h2>
+                    <h2 className="text-lg">{wilaya.shippingPrice}</h2>
+                  </li>
+                </ul>
+              ))}
+            </div>
+          )}
+        </div>
         <input
           className="border-2 border-cristaluxBrown rounded-md shadow-md w-[300px] p-2"
           type="text"
@@ -127,8 +168,14 @@ const FormCheckOut = ({ cart }) => {
           Total Items: {cart.cartItems.length}
         </h2>
         <div className="flex items-center gap-x-2">
-          <h2 className="text-xl font-medium">Total Price:</h2>
-          <h2 className="font-medium text-xl uppercase">{shippingPrice}da</h2>
+          {selectedWilaya !== null ? (
+            <h2 className="text-xl font-medium">
+              Total Price:{" "}
+              {totalPrice} DA
+            </h2>
+          ) : (
+            <h2>Total Price: {totalPrice} DA</h2>
+          )}
         </div>
       </div>
     </div>

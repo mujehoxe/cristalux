@@ -53,6 +53,7 @@ const Cart = () => {
       }
     };
 
+
   return (
     <section className="w-full min-h-[100vh]  ">
       <div className="lg:flex">
@@ -63,7 +64,7 @@ const Cart = () => {
               <FontAwesomeIcon
                 onClick={() => handleClearCart()}
                 icon={faTrash}
-                className="text-red-500 text-2xl"
+                className="text-red-500 text-2xl lg:cursor-pointer"
               />
             )}
           </div>

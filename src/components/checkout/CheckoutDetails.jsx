@@ -13,6 +13,17 @@ const CheckoutDetails = ({ cart }) => {
   const dispatch = useDispatch();
 
 
+      const calculateTotalPrice = (cartItem) => {
+        if (cartItem.percentage) {
+          return (
+            (cartItem.price - (cartItem.price * cartItem.percentage) / 100) *
+            cartItem.cartQuantity
+          ).toFixed(2); // Assuming two decimal places for currency
+        } else {
+          return (cartItem.price * cartItem.cartQuantity).toFixed(2);
+        }
+      };
+
 
 
   const handleRemoveFromCart = (cartItem) => {
@@ -39,6 +50,7 @@ const CheckoutDetails = ({ cart }) => {
           cart.cartItems.map((cartItem) => (
             <CartDetails
               key={cartItem.id}
+              totalPrice={calculateTotalPrice(cartItem)}
               cartItem={cartItem}
               handleIncrease={handleIncrease}
               handleDecrease={handleDecrease}
