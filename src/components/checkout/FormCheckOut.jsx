@@ -11,7 +11,7 @@ const FormCheckOut = ({ cart }) => {
     first_name: "",
     last_name: "",
     phoneNumber: "",
-    state: "", 
+    state: "",
     address: "",
     orderedProducts: [
       {
@@ -28,24 +28,31 @@ const FormCheckOut = ({ cart }) => {
     setPopUp(false);
   };
 
+  const orderedProducts = cart.cartItems.map((cartItem) => {
+    return { id: cartItem.id, quantity: cartItem.cartQuantity };
+  });
+
   useEffect(() => {
     // This effect will run after selectedWilaya has been updated
     selectedWilaya;
   }, [selectedWilaya]); // Add selectedWilaya as a dependency for the effect
 
   // Use useSelector to access the selected wilaya from Redux store
+  // {
+  //   cartItem.cartQuantity;
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(cart);
     const products = cart.cartItems.map((item) => {
-      return { productId: item.id, quantity: item.quantity };
+      return { productId: item.id, quantity: item.cartQuantity };
     });
     const updatedFormData = {
       ...formData,
       orderedProducts: products,
       totalPrice: totalPrice,
-      state:selectedWilaya.name
+      state: selectedWilaya.name,
     };
 
     try {
@@ -170,8 +177,7 @@ const FormCheckOut = ({ cart }) => {
         <div className="flex items-center gap-x-2">
           {selectedWilaya !== null ? (
             <h2 className="text-xl font-medium">
-              Total Price:{" "}
-              {totalPrice} DA
+              Total Price: {totalPrice} DA
             </h2>
           ) : (
             <h2>Total Price: {totalPrice} DA</h2>
