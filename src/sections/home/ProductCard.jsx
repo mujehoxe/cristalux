@@ -57,7 +57,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
             onClick={() => handleAddToCart(product)}
           />
         </div>
-        <h2 className="text-xl xs:text-sm sm:w-[90%] sm:text-xl font-bold w-[90%] xs:w-[80%]">
+        <h2 className="text-xl sm:w-[90%] xs2:text-sm sm:text-xl font-bold w-[90%] xs:w-[80%]">
           {product.name} 
         </h2>
         <div className="py-2">
@@ -66,11 +66,11 @@ const ProductCard = ({ product, size, lineClamp }) => {
           </p>
         </div>
         <div className="mt-2 flex justify-between  items-center">
-          <h3 className="text-base font-bold xs:text-xs xs2:text-base ">
+          <h3 className="text-sm font-bold xs:text-base xs2:text-sm sm:text-base ">
             {product.price} DA
           </h3>
           <Link
-            className="text-base xs:text-xs xs2:text-sm bg-cristaluxBrown text-white px-6 py-2 xs:py-2 xs:px-2 rounded-md"
+            className="text-sm xs:text-base xs2:text-sm sm:text-base bg-cristaluxBrown text-white px-6 py-2 xs:py-2 xs:px-2 rounded-md"
             to={`/products/${product.id}`}
             onClick={scrollToTop}
           >
