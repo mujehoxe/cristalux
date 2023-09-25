@@ -2,10 +2,15 @@ import Why from "../../components/home/Why";
 import whyus01 from '../../assets/imgs/whyus01.jpg'
 import whyus02 from '../../assets/imgs/whyus02.jpg'
 import whyus03 from '../../assets/imgs/whyus03.jpg'
+import { useEffect, useState } from "react";
 
 const MyComponent = () => {
+
+
+
+
   return (
-    <section className="pt-5">
+    <section  className="pt-5">
       <Why
         image={whyus01}
         title={"CHAISES STYLISH"}
@@ -14,6 +19,8 @@ const MyComponent = () => {
         }
         link={"products"}
         linkText={"view more >"}
+        xmove={"100%"}
+        number={1}
       />
       <Why
         image={whyus02}
@@ -24,8 +31,11 @@ const MyComponent = () => {
         link={"products"}
         linkText={"view more >"}
         flexRowReverse={"row-reverse"}
+        xmove={"-100%"}
+        number={2}
       />
       <Why
+        
         image={whyus03}
         title={"LAMPES CONTEMPORAINES"}
         paragraph={
@@ -33,6 +43,8 @@ const MyComponent = () => {
         }
         link={"products"}
         linkText={"view more >"}
+        xmove={"100%"}
+        number={3}
       />
     </section>
   );
