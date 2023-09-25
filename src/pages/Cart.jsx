@@ -12,6 +12,8 @@ import CartDetails from "../components/cart/CartDetails";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Summary from "../components/cart/Summary";
+import { motion } from "framer-motion";
+import Transition from "../components/framerMotion/Transition";
 
 const Cart = () => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
@@ -56,6 +58,7 @@ const Cart = () => {
 
   return (
     <section className="w-full min-h-[100vh]  ">
+      <Transition />
       <div className="lg:flex">
         <div className="p-4  mt-10 w-[96%] md:w-[70%] lg:w-[60%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
           <div className="flex items-center justify-between">
@@ -70,7 +73,12 @@ const Cart = () => {
           </div>
           <div className="mt-4">
             {cart.cartItems.length === 0 ? (
-              <div className="w-[90%] mx-auto h-[40vh] flex  gap-y-4 flex-col items-center justify-center lg:gap-y-5">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-[90%] mx-auto h-[40vh] flex  gap-y-4 flex-col items-center justify-center lg:gap-y-5"
+              >
                 <p className="text-2xl capitalize text-center">
                   Your cart is currently empty
                 </p>
@@ -80,7 +88,7 @@ const Cart = () => {
                 >
                   {"<"}- back to products
                 </Link>
-              </div>
+              </motion.div>
             ) : (
               <div className="mt-5">
                 {cart.cartItems &&
@@ -99,9 +107,14 @@ const Cart = () => {
           </div>
         </div>
         {cart.cartItems.length === 0 ? null : (
-          <div className="relativ p-4 mt-10 w-[96%] md:w-[70%] lg:h-[25%] lg:w-[30%] mx-auto bg-white rounded-md shadow-lg my-10 border-2">
-            <Summary cartItems={cart.cartItems} cart={cart}  />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relativ p-4 mt-10 w-[96%] md:w-[70%] lg:h-[25%] lg:w-[30%] mx-auto bg-white rounded-md shadow-lg my-10 border-2"
+          >
+            <Summary cartItems={cart.cartItems} cart={cart} />
+          </motion.div>
         )}
       </div>
     </section>
