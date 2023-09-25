@@ -41,7 +41,7 @@ const CheckoutDetails = ({ cart }) => {
   };
 
   return (
-    <div className="w-[95%] mx-auto p-4 bg-white rounded-md shadow-md">
+    <div className="w-[95%] md:w-[80%] lg:w-[60%] mx-auto p-4 bg-white rounded-md shadow-md">
       <h2 className="capitalize font-bold text-cristaluxBrown text-xl">
         Cart Summary
       </h2>

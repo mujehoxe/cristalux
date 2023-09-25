@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import wilayasList from "./wilayasList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const FormCheckOut = ({ cart }) => {
   const [selectedWilaya, setSelectedWilaya] = useState(wilayasList[0]); // Use the first wilaya as the default
@@ -28,22 +29,16 @@ const FormCheckOut = ({ cart }) => {
     setPopUp(false);
   };
 
-  const orderedProducts = cart.cartItems.map((cartItem) => {
-    return { id: cartItem.id, quantity: cartItem.cartQuantity };
-  });
 
   useEffect(() => {
-    // This effect will run after selectedWilaya has been updated
     selectedWilaya;
-  }, [selectedWilaya]); // Add selectedWilaya as a dependency for the effect
+  }, [selectedWilaya]); 
 
-  // Use useSelector to access the selected wilaya from Redux store
-  // {
-  //   cartItem.cartQuantity;
-  // }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    toast.success("order was successfully sent!")
     console.log(cart);
     const products = cart.cartItems.map((item) => {
       return { productId: item.id, quantity: item.cartQuantity };
@@ -69,14 +64,11 @@ const FormCheckOut = ({ cart }) => {
 
       if (response.status === 201) {
         const data = await response.json();
-        // Handle the successful response here, e.g., show a success message
         console.log("Order placed successfully:", data);
       } else {
-        // Handle errors here, e.g., show an error message
         console.error("Failed to place order");
       }
     } catch (error) {
-      // Handle network or other errors here
       console.error("Error:", error);
     }
   };
@@ -92,9 +84,9 @@ const FormCheckOut = ({ cart }) => {
   let totalPrice = cart.cartTotalAmount + selectedWilaya.shippingPrice;
 
   return (
-    <div className="w-[95%] mx-auto py-2 bg-white flex flex-col items-center justify-center">
+    <div className="w-[95%] md:w-[80%] lg:w-[40%] lg:h-[20%] mx-auto py-2 bg-white flex flex-col items-center justify-center rounded-md">
       <h2 className="text-cristaluxBrown capitalize font-semibold text-xl">
-        Payment Address
+        Payment Details
       </h2>
       <form
         className="flex flex-col justify-center items-center gap-y-2 my-5"
@@ -127,7 +119,7 @@ const FormCheckOut = ({ cart }) => {
           maxLength={10}
         />
         <div
-          className={`relative flex items-center justify-between border-2 text-cristaluxBrown font-medium border-cristaluxBrown rounded-md shadow-md w-[300px] p-2 u`}
+          className={`relative flex items-center justify-between border-2 text-cristaluxBrown font-medium border-cristaluxBrown rounded-md shadow-md w-[300px] p-2 cursor-pointer lg:hover:bg-cristaluxBrown lg:hover:text-cristalux transition-all duration-300`}
           onClick={() => setPopUp((prev) => !prev)}
         >
           <h2 className={``}>
@@ -135,16 +127,16 @@ const FormCheckOut = ({ cart }) => {
           </h2>
           <FontAwesomeIcon icon={popUp ? faChevronUp : faChevronDown} />
           {popUp && (
-            <div className="absolute bottom-14 -left-2 shadow-md rounded-md w-[90%] mx-auto bg-white h-[300px] overflow-y-scroll">
+            <div className="absolute bottom-14 -left-2 shadow-md rounded-md w-[90%] mx-auto bg-white text-cristaluxBrown h-[300px] overflow-y-scroll ">
               {wilayasList.map((wilaya) => (
                 <ul
                   key={wilaya.id}
                   onClick={() => handleItemClick(wilaya.id)}
                   className={`border-2 ${
                     selectedWilaya && wilaya.id === selectedWilaya.id
-                      ? "text-red-300"
+                      ? "bg-cristaluxBrown text-cristalux"
                       : ""
-                  } border-cristaluxBrown p-2  cursor-pointer`}
+                  } border-cristaluxBrown p-2  cursor-pointer lg:hover:bg-cristaluxBrown lg:hover:text-cristalux transition-all duration-300`}
                 >
                   <li className="flex items-center justify-between">
                     <h2 className="text-lg">{wilaya.name}</h2>

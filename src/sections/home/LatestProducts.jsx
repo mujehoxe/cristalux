@@ -66,7 +66,7 @@ const LatestProducts = () => {
     <main>
       {error && <ErrorMsg />}
       {products && (
-        <section className="">
+        <section className="min-h-[100vh]">
           <motion.div
             id="latestSection"
             className="w-[90%] mx-auto text-center mt-5"

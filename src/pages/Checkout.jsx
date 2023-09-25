@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { clearCart, getTotal } from "../features/cartSlice";
+import { getTotal } from "../features/cartSlice";
 import CheckoutDetails from "../components/checkout/CheckoutDetails"
 import FormCheckOut from "../components/checkout/FormCheckOut";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const Checkout = () => {
 
 
   return (
-    <section className="bg-gray-200 w-full min-h-[100vh] xs:bg-red-300 xs2:bg-red-500 sm:bg-red-950 md:bg-green-300">
+    <section className="bg-gray-200 w-full min-h-[100vh]">
       {cart.cartItems.length === 0 ? (
         <div className="w-[90%] mx-auto h-[40vh] flex  gap-y-4 flex-col items-center justify-center lg:gap-y-5">
           <p className="text-2xl capitalize text-center">
@@ -29,7 +29,7 @@ const Checkout = () => {
           </Link>
         </div>
       ) : (
-        <div className="py-5 flex flex-col justify-center gap-y-5">
+        <div className="py-5 flex flex-col justify-center gap-y-5  lg:flex-row-reverse lg:gap-x-4 px-4 ">
           <CheckoutDetails cart={cart}  />
           <FormCheckOut cart={cart}  />
         </div>
