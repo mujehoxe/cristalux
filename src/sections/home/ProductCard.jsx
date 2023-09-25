@@ -29,7 +29,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
     <div
       className={`bg-white rounded-lg  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer  ${size}`}
     >
-      <div className="relative bg-red-300 h-[65%]  w-full">
+      <div className="relative bg-cristaluxBrown h-[65%]  w-full">
         <img
           className="w-full h-full object-fill"
           src={"https://cristalux-app.onrender.com/" + product.thumbnail}

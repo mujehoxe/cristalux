@@ -15,6 +15,8 @@ import { addToCartWithQuantity } from "../features/cartSlice";
 import LatestProducts from "../sections/home/LatestProducts";
 import { toast } from "react-toastify";
 import DesktopView from "../components/product/DesktopView";
+import Transition from "../components/framerMotion/Transition";
+import { motion } from "framer-motion";
 
 const Product = () => {
   const [product, setProduct] = useState(null);
@@ -68,27 +70,49 @@ const Product = () => {
 
   return (
     <main className="">
+      <Transition />
       {error && <ErrorMsg />}
       {product && (
         <div className="lg:hidden">
           <div className="p-2">
             <div className="sm:[80%] md:w-[95%] sm:mx-auto">
-              <h1 className="text-2xl uppercase text-cristaluxBrown font-black">
+              <motion.h1
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-2xl uppercase text-cristaluxBrown font-black"
+              >
                 {product.name}
-              </h1>
-              <h2 className="text-2xl uppercase text-cristaluxBrown font-semibold">
+              </motion.h1>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="text-2xl uppercase text-cristaluxBrown font-semibold"
+              >
                 category:{" "}
                 <span className="font-bold">{product.category.name}</span>
-              </h2>
+              </motion.h2>
             </div>
-            <div className="md:p-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="md:p-4"
+            >
               <ProductImages product={product} />
-            </div>
+            </motion.div>
+
             <Price product={product} />
             {product.description && (
-              <p className="text-cristaluxBrown sm:text-lg font-medium sm:w-[80%] sm:mx-auto md:text-xl">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                className="text-cristaluxBrown sm:text-lg font-medium sm:w-[80%] sm:mx-auto md:text-xl"
+              >
                 {product.description}
-              </p>
+              </motion.p>
             )}
             <Quantity
               product={product}
@@ -100,21 +124,34 @@ const Product = () => {
                 onClick={handleAddToCart}
                 className="text-cristaluxBrown border-2 border-cristaluxBrown px-4 py-2 flex items-center gap-3 rounded-md"
               >
-                <FontAwesomeIcon className="" icon={faCartShopping} />
-                <span className="font-semibold capitalize">add to cart</span>
-              </button>
-              <button
-                onClick={handleBuyNow}
-                className="uppercase text-cristalux font-semibold bg-cristaluxBrown py-2 px-6 rounded-md"
-              >
-                buy now
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1}}
+                >
+                  <FontAwesomeIcon className="" icon={faCartShopping} />
+                </motion.div>
+                <motion.span
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1 }}
+                  className="font-semibold capitalize"
+                >
+                  add to cart
+                </motion.span>
               </button>
             </div>
           </div>
           <LatestProducts />
         </div>
       )}
-      <DesktopView handleAddToCart={handleAddToCart} handleBuyNow={handleBuyNow} product={product} selectedQuantity={selectedQuantity} onQuantityChange={handleQuantityChange} />
+      <DesktopView
+        handleAddToCart={handleAddToCart}
+        handleBuyNow={handleBuyNow}
+        product={product}
+        selectedQuantity={selectedQuantity}
+        onQuantityChange={handleQuantityChange}
+      />
     </main>
   );
 };

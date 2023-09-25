@@ -26,9 +26,22 @@ const Pagination = ({
     }
   };
 
+      const scrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      };
+
   return (
     <nav className="py-20 flex justify-center items-center gap-x-5">
-      <button onClick={handlePreviousPage} className="text-4xl font-bold">
+      <button
+        onClick={() => {
+          handlePreviousPage();
+          scrollToTop();
+        }}
+        className="text-4xl font-bold"
+      >
         {"<"}
       </button>
       <div>
@@ -39,7 +52,8 @@ const Pagination = ({
                 className={`${
                   currentPage === number ? "bg-cristaluxBrown" : "bg-gray-400"
                 } w-[20px] h-[20px] rounded-[50%] `}
-                onClick={() => handlePageChange(number)}
+                onClick={() => {handlePageChange(number)
+                                  scrollToTop()}}
               ></div>
             </li>
           ))}
@@ -49,7 +63,8 @@ const Pagination = ({
             <li key={number}>
               <a
                 href="#"
-                onClick={() => handlePageChange(number)}
+                onClick={() => {handlePageChange(number) 
+                                scrollToTop()}}
                 className={`${
                   currentPage === number
                     ? "text-cristaluxBrown font-bold"
@@ -62,7 +77,8 @@ const Pagination = ({
           ))}
         </ul>
       </div>
-      <button onClick={handleNextPage} className="text-4xl font-bold">
+      <button onClick={() => {handleNextPage()
+                              scrollToTop()}} className="text-4xl font-bold">
         {">"}
       </button>
     </nav>

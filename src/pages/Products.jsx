@@ -6,6 +6,7 @@ import Categories from "../components/products/Categories";
 import { ToastContainer, toast } from "react-toastify";
 import SearchFunc from "../components/products/SearchFunc";
 import Transition from "../components/framerMotion/Transition";
+import { motion } from "framer-motion";
 
 const API_BASE_URL = "https://cristalux-app.onrender.com/api/v1";
 
@@ -96,14 +97,24 @@ const fetchProducts = async () => {
       {error && <ErrorMsg />}
       <section className="py-10 lg:w-[80%]">
         <div className="title">
-          <h1 className="text-center text-cristaluxBrown capitalize text-3xl font-bold">
+          <motion.h1
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center text-cristaluxBrown capitalize text-3xl font-bold"
+          >
             nous produits
-          </h1>
+          </motion.h1>
         </div>
         <div className="w-[90%] mx-auto mt-5">
-          <p className="text-[#7E7E7E] text-xl">
+          <motion.p
+            className="text-[#7E7E7E] text-xl"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+          >
             Showing {productsPerPage} of {totalProductsNumber}
-          </p>
+          </motion.p>
         </div>
         <div className="lg:hidden">
           <h2 className="text-center py-5 text-cristaluxBrown font-bold uppercase text-2xl">
@@ -122,7 +133,18 @@ const fetchProducts = async () => {
         <div className="py-10 flex justify-center items-center flex-wrap gap-x-5 gap-y-5">
           {productsFound ? (
             products.map((product, index) => (
-              <ProductCard key={index} product={product} size={cardSize} lineClamp={lineClamp} />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}>
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  size={cardSize}
+                  lineClamp={lineClamp}
+                />
+              </motion.div>
             ))
           ) : (
             <p className="text-center text-cristaluxBrown font-bold capitalize text-2xl my-5">
