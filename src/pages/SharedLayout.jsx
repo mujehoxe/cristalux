@@ -1,17 +1,16 @@
 import { Outlet } from "react-router-dom"
 import Header from "../components/sharedLayout/Header"
 import Footer from "../components/sharedLayout/Footer"
-
 const SharedLayout = () => {
   return (
-    <main className="overflow-x-hidden">
+      <main className="overflow-x-hidden">
         <Header />
         <div className="min-h-[100vh]">
-            <Outlet />
+          <Outlet />
         </div>
         <Footer />
-    </main>
-  )
+      </main>
+  );
 }
 
 export default SharedLayout

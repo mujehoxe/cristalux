@@ -5,29 +5,50 @@ import close from "../../assets/imgs/close.png";
 import myCart from "../../assets/imgs/myCart.png";
 import logo from '../../assets/imgs/logo.png'
 import { useState } from "react";
+import { motion } from "framer-motion";
+
 
 const Header = () => {
   const [navToggle, setNavToggle] = useState(false);
   const cart = useSelector((state) => state.cart);
 
+const headerVariants = {
+  hidden: { y: "-100%", opacity: 0 }, // Initially hidden above the viewport with opacity 0
+  visible: {
+    y: 0, // Moves to its normal position
+    opacity: 1, // Fades in
+    transition: {
+      duration: 1, // Duration of the animation in seconds
+      ease: "easeIn", // Easing function for smoother motion
+    },
+  },
+};
+
 
   return (
-    <header className="header w-full min-h-[40px] flex items-center justify-between z-20  px-3 py-4 sm:px-7 md:px-10 overflow-x-hidden">
-      <div className="logo">
+    <motion.header className="header w-full bg-cristaluxBrown min-h-[40px] flex items-center justify-between z-20  px-3 py-4 sm:px-7 md:px-10 overflow-x-hidden">
+      <motion.div
+        className="logo"
+        initial={"hidden"}
+        animate={"visible"}
+        variants={headerVariants}
+      >
         <Link to={"/"} className="flex items-center gap-x-3">
           <img src={logo} className="w-[40px] lg:w-[50px]" alt="logo" />
           <span className="title text-2xl lg:text-3xl font-extrabold text-cristalux">
             CRISTALUX
           </span>
         </Link>
-      </div>
+      </motion.div>
       <div className="flex items-center gap-x-4 sm:flex-row-reverse">
         <div className="relative cart">
           <Link to={"cart"}>
             <img src={myCart} className="w-[30px] cursor-pointer" alt="cart" />
           </Link>
           <div className="absolute w-[27px] h-[27px] -top-[30%] -right-[50%]  flex items-center justify-center bg-cristalux border-2 border-black rounded-[50%]">
-            <span className="text-black font-bold">{cart.cartItems.length}</span>
+            <span className="text-black font-bold">
+              {cart.cartItems.length}
+            </span>
           </div>
         </div>
         <nav>
@@ -71,7 +92,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

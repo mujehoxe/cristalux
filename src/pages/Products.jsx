@@ -5,6 +5,7 @@ import Pagination from "../components/products/Pagination";
 import Categories from "../components/products/Categories";
 import { ToastContainer, toast } from "react-toastify";
 import SearchFunc from "../components/products/SearchFunc";
+import Transition from "../components/framerMotion/Transition";
 
 const API_BASE_URL = "https://cristalux-app.onrender.com/api/v1";
 
@@ -90,6 +91,7 @@ const fetchProducts = async () => {
 
   return (
     <main className="lg:flex lg:min-h-[100vh]">
+      <Transition />
       {isLoading && <h2>loading...</h2>}
       {error && <ErrorMsg />}
       <section className="py-10 lg:w-[80%]">

@@ -27,7 +27,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
 
   return (
     <div
-      className={`bg-white rounded-lg  shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer ${size}`}
+      className={`bg-white rounded-lg  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer  ${size}`}
     >
       <div className="relative bg-red-300 h-[65%]  w-full">
         <img
@@ -58,7 +58,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
           />
         </div>
         <h2 className="text-xl xs:text-sm sm:w-[90%] sm:text-xl font-bold w-[90%] xs:w-[80%]">
-          {product.name}
+          {product.name} 
         </h2>
         <div className="py-2">
           <p className={`${lineClamp}  text-sm text-gray-600  w-[90%]`}>
