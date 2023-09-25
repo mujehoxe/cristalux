@@ -76,7 +76,7 @@ const Cart = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 1 }}
                 className="w-[90%] mx-auto h-[40vh] flex  gap-y-4 flex-col items-center justify-center lg:gap-y-5"
               >
                 <p className="text-2xl capitalize text-center">
@@ -110,7 +110,7 @@ const Cart = () => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
             className="relativ p-4 mt-10 w-[96%] md:w-[70%] lg:h-[25%] lg:w-[30%] mx-auto bg-white rounded-md shadow-lg my-10 border-2"
           >
             <Summary cartItems={cart.cartItems} cart={cart} />
