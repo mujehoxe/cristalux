@@ -99,20 +99,23 @@ const FormCheckOut = ({ cart }) => {
           name="first_name"
           value={formData.first_name}
           onChange={handleInputChange}
+          required
         />
         <input
           className="border-2 border-cristaluxBrown rounded-md shadow-md w-[300px] p-2"
           type="text"
           placeholder="Last Name"
           name="last_name"
+          required
           value={formData.last_name}
           onChange={handleInputChange}
         />
         <input
           className="border-2 border-cristaluxBrown rounded-md shadow-md w-[300px] p-2"
-          type="text"
+          type="number"
           placeholder="Phone Number"
           name="phoneNumber"
+          required
           value={formData.phoneNumber}
           onChange={handleInputChange}
           minLength={10}
@@ -151,6 +154,7 @@ const FormCheckOut = ({ cart }) => {
           className="border-2 border-cristaluxBrown rounded-md shadow-md w-[300px] p-2"
           type="text"
           placeholder="Address"
+          required
           name="address"
           value={formData.address}
           onChange={handleInputChange}
