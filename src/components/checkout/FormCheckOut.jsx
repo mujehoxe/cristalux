@@ -39,7 +39,6 @@ const FormCheckOut = ({ cart }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     toast.success("order was successfully sent!")
-    console.log(cart);
     const products = cart.cartItems.map((item) => {
       return { productId: item.id, quantity: item.cartQuantity };
     });
