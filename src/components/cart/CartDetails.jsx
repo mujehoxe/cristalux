@@ -9,11 +9,6 @@ const CartDetails = ({
   handleRemoveFromCart,
   totalPrice,
 }) => {
-
-
-  
-  
-
   return (
     <motion.div
       className="mt-3 rounded-md p-2 w-full bg-gray-100 flex  gap-x-3 border-b-2 shadow-md"
@@ -26,7 +21,7 @@ const CartDetails = ({
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1 }}
-          src={"https://cristalux-app.onrender.com/" + cartItem.thumbnail}
+          src={cartItem.thumbnail}
           className="w-full h-full object-cover rounded-md"
           alt={cartItem.name}
         />
@@ -57,7 +52,7 @@ const CartDetails = ({
           className="flex items-center w-[120px] justify-around  border-2 border-cristaluxBrown rounded-md"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration:1 }}
+          transition={{ duration: 1 }}
         >
           <FontAwesomeIcon
             className="text-cristaluxBrown text-base text-left lg:cursor-pointer"

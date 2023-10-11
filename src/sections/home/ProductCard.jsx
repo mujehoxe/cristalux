@@ -11,12 +11,12 @@ const ProductCard = ({ product, size, lineClamp }) => {
 
   const dispatch = useDispatch();
 
-    const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const handleAddToCart = (product) => {
     dispatch(
@@ -32,7 +32,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
       <div className="relative bg-cristaluxBrown h-[65%]  w-full">
         <img
           className="w-full h-full object-fill"
-          src={"https://cristalux-app.onrender.com/" + product.thumbnail}
+          src={product.thumbnail}
           alt=""
         />
         {discount !== null && (
@@ -58,7 +58,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
           />
         </div>
         <h2 className="text-xl sm:w-[90%] xs2:text-sm sm:text-xl font-bold w-[90%] xs:w-[80%]">
-          {product.name} 
+          {product.name}
         </h2>
         <div className="py-2">
           <p className={`${lineClamp}  text-sm text-gray-600  w-[90%]`}>

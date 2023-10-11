@@ -24,7 +24,6 @@ const Product = () => {
   const [selectedQuantity, setSelectedQuantity] = useState(1); // Initialize selected quantity
   const { productId } = useParams();
 
-
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -51,9 +50,7 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const data = await fetch(
-          `https://cristalux-app.onrender.com/api/v1/products/${productId}`
-        );
+        const data = await fetch(`/api/v1/products/${productId}`);
         const fetchedProduct = await data.json();
         setProduct(fetchedProduct);
       } catch (error) {
@@ -127,7 +124,7 @@ const Product = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1}}
+                  transition={{ duration: 1 }}
                 >
                   <FontAwesomeIcon className="" icon={faCartShopping} />
                 </motion.div>

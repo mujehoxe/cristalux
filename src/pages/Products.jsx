@@ -8,7 +8,7 @@ import SearchFunc from "../components/products/SearchFunc";
 import Transition from "../components/framerMotion/Transition";
 import { motion } from "framer-motion";
 
-const API_BASE_URL = "https://cristalux-app.onrender.com/api/v1";
+const API_BASE_URL = "/api/v1";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -22,7 +22,6 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const productsPerPage = 6;
   const [productsFound, setProductsFound] = useState(true);
-
 
   useEffect(() => {
     fetchCategories();
@@ -39,28 +38,27 @@ const Products = () => {
     }
   };
 
-const fetchProducts = async () => {
-  try {
-    setIsLoading(true);
-    const apiUrl = getApiUrl();
-    const response = await fetch(apiUrl);
+  const fetchProducts = async () => {
+    try {
+      setIsLoading(true);
+      const apiUrl = getApiUrl();
+      const response = await fetch(apiUrl);
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch products");
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+
+      const [productData, totalData] = await response.json();
+      setProducts(productData);
+      setTotalProductsNumber(totalData);
+      setProductsFound(productData.length > 0); // Set productsFound based on the length of the product data
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+      setProductsFound(false); // Set productsFound to false in case of an error
     }
-
-    const [productData, totalData] = await response.json();
-    setProducts(productData);
-    setTotalProductsNumber(totalData);
-    setProductsFound(productData.length > 0); // Set productsFound based on the length of the product data
-    setIsLoading(false);
-  } catch (error) {
-    setError(error.message);
-    setIsLoading(false);
-    setProductsFound(false); // Set productsFound to false in case of an error
-  }
-};
-
+  };
 
   const getApiUrl = () => {
     switch (mode) {
@@ -76,19 +74,20 @@ const fetchProducts = async () => {
   const handleSearch = (searchKeyword) => {
     setKeyword(searchKeyword);
     setMode("search");
-    setCurrentPage(1)
+    setCurrentPage(1);
   };
 
   const handleCategoriesChange = (categoryId) => {
     setSelectedCategory(categoryId);
-    setCurrentPage(1)
+    setCurrentPage(1);
     setMode("filter");
   };
 
   const cardSize =
     "w-[300px] h-[430px] xs:w-[200px] xs:h-[370px] xs2:w-[230px] xs2:h-[400px] sm:w-[300px] sm:h-[420px] md:w-[320px] md:h-[470px] lg:w-[320px] lg:h-[480px] xl:w-[320px] xl:h-[510px]";
 
-  const lineClamp = "line-clamp-2 xs:line-clamp-1 xs2:line-clamp-2 lg:line-clamp-3"
+  const lineClamp =
+    "line-clamp-2 xs:line-clamp-1 xs2:line-clamp-2 lg:line-clamp-3";
 
   return (
     <main className="lg:flex lg:min-h-[100vh]">
@@ -137,7 +136,8 @@ const fetchProducts = async () => {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}>
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <ProductCard
                   key={product.id}
                   product={product}

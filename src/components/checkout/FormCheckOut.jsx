@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import wilayasList from "./wilayasList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const FormCheckOut = ({ cart }) => {
   const [selectedWilaya, setSelectedWilaya] = useState(wilayasList[0]); // Use the first wilaya as the default
@@ -29,16 +29,13 @@ const FormCheckOut = ({ cart }) => {
     setPopUp(false);
   };
 
-
   useEffect(() => {
     selectedWilaya;
-  }, [selectedWilaya]); 
-
-
+  }, [selectedWilaya]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("order was successfully sent!")
+    toast.success("order was successfully sent!");
     const products = cart.cartItems.map((item) => {
       return { productId: item.id, quantity: item.cartQuantity };
     });
@@ -50,16 +47,13 @@ const FormCheckOut = ({ cart }) => {
     };
 
     try {
-      const response = await fetch(
-        "https://cristalux-app.onrender.com/api/v1/orders/checkout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedFormData),
-        }
-      );
+      const response = await fetch("/api/v1/orders/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedFormData),
+      });
 
       if (response.status === 201) {
         const data = await response.json();
