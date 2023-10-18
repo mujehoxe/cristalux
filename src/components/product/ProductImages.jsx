@@ -8,6 +8,8 @@ const ProductImages = ({ product }) => {
   const handleImagesChange = (imageUrl) => {
     setSelectedImage(imageUrl);
   };
+
+  console.log(product.thumbnail);
   return (
     <div className="w-full lg:w-[60%] lg:h-[500px] lg:mx-0 sm:w-[80%] md:w-full md:h-[650px] mx-auto  border-black my-5 bg-cristaluxBrown p-2 md:p-4 flex flex-col md:flex-row md:items-start md:gap-x-5 items-center gap-1 rounded-md shadow-md">
       <div className="w-full  h-[300px] xs:h-[400px] md:h-full">
