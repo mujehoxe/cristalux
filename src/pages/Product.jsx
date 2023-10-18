@@ -27,7 +27,6 @@ const Product = () => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    // Use the new addToCartWithQuantity action with the selected quantity
     try {
       dispatch(addToCartWithQuantity({ product, quantity: selectedQuantity }));
     } catch (e) {

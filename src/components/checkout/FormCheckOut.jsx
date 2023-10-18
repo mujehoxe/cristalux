@@ -47,7 +47,7 @@ const FormCheckOut = ({ cart }) => {
     };
 
     try {
-      const response = await fetch("cristalux.store/api/v1/orders/checkout", {
+      const response = await fetch("/api/v1/orders/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
