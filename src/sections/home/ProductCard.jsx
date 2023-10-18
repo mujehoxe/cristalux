@@ -32,7 +32,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
       <div className="relative bg-cristaluxBrown h-[65%]  w-full">
         <img
           className="w-full h-full object-cover"
-          src={product.thumbnail}
+          src={"/" + product.thumbnail}
           alt=""
         />
         {discount !== null && discount !== 0 && (
