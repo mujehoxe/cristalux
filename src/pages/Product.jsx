@@ -1,16 +1,12 @@
-import { Link, useParams, Outlet, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import useFetch from "../components/home/useFetch";
-import Loading from "../components/fetch/Loading";
 import ErrorMsg from "../components/fetch/ErrorMsg";
 import { useState, useEffect } from "react";
-import Slider from "../components/products/Slider";
 import ProductImages from "../components/product/ProductImages";
 import Price from "../components/product/Price";
 import Quantity from "../components/product/Quantity";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { addToCart } from "../features/cartSlice";
 import { addToCartWithQuantity } from "../features/cartSlice";
 import LatestProducts from "../sections/home/LatestProducts";
 import { toast } from "react-toastify";
@@ -45,12 +41,14 @@ const Product = () => {
     }
     navigate("/checkout");
   };
+
   useEffect(() => {
     const getProduct = async () => {
       try {
         const data = await fetch(`/api/v1/products/${productId}`);
         const fetchedProduct = await data.json();
         setProduct(fetchedProduct);
+        console.log(fetchedProduct);
       } catch (error) {
         setError(error.message);
       }

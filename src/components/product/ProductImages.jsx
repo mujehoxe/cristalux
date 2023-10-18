@@ -13,7 +13,7 @@ const ProductImages = ({ product }) => {
       <div className="w-full  h-[300px] xs:h-[400px] md:h-full">
         <img
           className="w-full h-full object-cover rounded-md shadow-md"
-          src={selectedImage}
+          src={product.thumbnail}
           alt={product.name}
         />
       </div>
