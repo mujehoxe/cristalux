@@ -6,12 +6,10 @@ const LatestProducts = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
 
-  // /api/v1/products/latest
-
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data = await fetch("http://localhost:8000/data");
+        const data = await fetch("/api/v1/products/latest");
         setProducts(await data.json());
       } catch (error) {
         setError(error.message);
