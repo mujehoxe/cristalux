@@ -46,11 +46,10 @@ const Product = () => {
     }
     navigate("/checkout");
   };
-  // /api/v1/products/
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const data = await fetch(`http://localhost:8000/data/${productId}`);
+        const data = await fetch(`/api/v1/products/${productId}`);
         const fetchedProduct = await data.json();
         setProduct(fetchedProduct);
       } catch (error) {
