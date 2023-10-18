@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ProductImages = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(
@@ -15,7 +15,7 @@ const ProductImages = ({ product }) => {
       <div className="w-full  h-[300px] xs:h-[400px] md:h-full">
         <img
           className="w-full h-full object-cover rounded-md shadow-md"
-          src={product.thumbnail}
+          src={"/" + product.thumbnail}
           alt={product.name}
         />
       </div>
@@ -28,7 +28,7 @@ const ProductImages = ({ product }) => {
                 selectedImage === image ? "border-2 border-cristalux " : ""
               } lg:cursor-pointer w-[24%] h-[80%] md:w-full md:h-[24%] object-cover rounded-md`}
               src={image}
-              alt={product.name}
+              alt={"/" + product.name}
               onClick={() => handleImagesChange(image)}
             />
           ))}
