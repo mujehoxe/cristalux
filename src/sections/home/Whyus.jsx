@@ -2,7 +2,6 @@ import Why from "../../components/home/Why";
 import whyus01 from '../../assets/imgs/whyus01.jpg'
 import whyus02 from '../../assets/imgs/whyus02.jpg'
 import whyus03 from '../../assets/imgs/whyus03.jpg'
-import { useEffect, useState } from "react";
 
 const MyComponent = () => {
 

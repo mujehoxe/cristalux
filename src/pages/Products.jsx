@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ErrorMsg from "../components/fetch/ErrorMsg";
 import ProductCard from "../sections/home/ProductCard";
 import Pagination from "../components/products/Pagination";
 import Categories from "../components/products/Categories";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import SearchFunc from "../components/products/SearchFunc";
 import Transition from "../components/framerMotion/Transition";
 import { motion } from "framer-motion";
@@ -51,12 +51,12 @@ const Products = () => {
       const [productData, totalData] = await response.json();
       setProducts(productData);
       setTotalProductsNumber(totalData);
-      setProductsFound(productData.length > 0); // Set productsFound based on the length of the product data
+      setProductsFound(productData.length > 0);
       setIsLoading(false);
     } catch (error) {
       setError(error.message);
       setIsLoading(false);
-      setProductsFound(false); // Set productsFound to false in case of an error
+      setProductsFound(false);
     }
   };
 

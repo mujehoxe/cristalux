@@ -6,17 +6,19 @@ const LatestProducts = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
 
+  // /api/v1/products/latest
+
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data = await fetch("/api/v1/products/latest");
+        const data = await fetch("http://localhost:8000/data");
         setProducts(await data.json());
       } catch (error) {
         setError(error.message);
       }
     };
     getProducts();
-  }, [products]);
+  }, []);
 
   return (
     <main>

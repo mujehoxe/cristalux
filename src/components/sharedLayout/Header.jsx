@@ -3,27 +3,25 @@ import { NavLink, Link } from "react-router-dom";
 import menu from "../../assets/imgs/menu.png";
 import close from "../../assets/imgs/close.png";
 import myCart from "../../assets/imgs/myCart.png";
-import logo from '../../assets/imgs/logo.png'
+import logo from "../../assets/imgs/logo.png";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 
 const Header = () => {
   const [navToggle, setNavToggle] = useState(false);
   const cart = useSelector((state) => state.cart);
 
-const headerVariants = {
-  hidden: { y: "-100%", opacity: 0 }, // Initially hidden above the viewport with opacity 0
-  visible: {
-    y: 0, // Moves to its normal position
-    opacity: 1, // Fades in
-    transition: {
-      duration: 1, // Duration of the animation in seconds
-      ease: "easeIn", // Easing function for smoother motion
+  const headerVariants = {
+    hidden: { y: "-100%", opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        ease: "easeIn",
+      },
     },
-  },
-};
-
+  };
 
   return (
     <motion.header className="header w-full bg-cristaluxBrown min-h-[40px] flex items-center justify-between z-20  px-3 py-4 sm:px-7 md:px-10 overflow-x-hidden">

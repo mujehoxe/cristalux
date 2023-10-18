@@ -46,11 +46,11 @@ const Product = () => {
     }
     navigate("/checkout");
   };
-
+  // /api/v1/products/
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const data = await fetch(`/api/v1/products/${productId}`);
+        const data = await fetch(`http://localhost:8000/data/${productId}`);
         const fetchedProduct = await data.json();
         setProduct(fetchedProduct);
       } catch (error) {
@@ -119,7 +119,7 @@ const Product = () => {
             <div className="my-7 flex items-center justify-center gap-x-4">
               <button
                 onClick={handleAddToCart}
-                className="text-cristaluxBrown border-2 border-cristaluxBrown px-4 py-2 flex items-center gap-3 rounded-md"
+                className={`text-cristaluxBrown  border-2 border-cristaluxBrown px-4 py-2 flex items-center gap-3 rounded-md`}
               >
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}

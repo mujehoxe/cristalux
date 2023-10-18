@@ -126,3 +126,11 @@ aside {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+
+.App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

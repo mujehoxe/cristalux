@@ -7,38 +7,37 @@ const Transition = () => {
 
   const transitionVariants = {
     initial: {
-      x: "0%", // Start from the left (outside of the screen)
-      opacity: 1, // Start with opacity 0
+      x: "0%",
+      opacity: 1,
     },
     animate: {
-      x: "100%", // Move to the center
-      opacity: 0, // Fade in while moving
+      x: "100%",
+      opacity: 0,
     },
     exit: {
-      x: "100%", // Exit to the right (outside of the screen from the left)
-      opacity: 0, // Fade out while exiting
+      x: "100%",
+      opacity: 0,
     },
   };
 
-const imageVariants = {
-  initial: {
-    opacity: 1,
-  },
-  animate: {
-    opacity: 0,
-    transition: { duration: 1.9 }, // Increase the duration here
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 1.9 }, // Increase the duration here
-  },
-};
-
+  const imageVariants = {
+    initial: {
+      opacity: 1,
+    },
+    animate: {
+      opacity: 0,
+      transition: { duration: 1.9 },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 1.9 },
+    },
+  };
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
-    const durationFactor = Math.min(1, screenWidth / 1920); // Adjust this factor as needed
-    const calculatedDuration = 1.5 * durationFactor; // 1.5 is the base duration, adjust as needed
+    const durationFactor = Math.min(1, screenWidth / 1920);
+    const calculatedDuration = 1.5 * durationFactor;
     setAnimationDuration(calculatedDuration);
   }, []);
 
