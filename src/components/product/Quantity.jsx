@@ -38,7 +38,7 @@ const Quantity = ({ product, selectedQuantity, onQuantityChange }) => {
           />
           <input
             type="number"
-            className="w-32 text-center text-2xl lg:text-xl md:text-3xl bg-transparent pl-3"
+            className="w-24 text-center text-2xl lg:text-xl md:text-3xl bg-transparent pl-3"
             value={quantity}
             readOnly
           />
