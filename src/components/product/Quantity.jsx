@@ -29,8 +29,8 @@ const Quantity = ({ product, selectedQuantity, onQuantityChange }) => {
       <h2 className="text-center text-cristaluxBrown text-3xl capitalize font-semibold lg:text-left">
         Quantity
       </h2>
-      <div className="flex items-center gap-4">
-        <div className="lg:mx-0 lg:w-[30%] lg:gap-x-10 lg:py-2 my-5 w-[50%] md:w-[40%] mx-auto py-1 border-cristaluxBrown border-2 text-cristaluxBrown flex items-center justify-center gap-x-4">
+      <div className="">
+        <div className="lg:mx-0 lg:w-[300px] lg:gap-x-10 lg:py-2 my-5 w-[50%] md:w-[40%] mx-auto py-1 border-cristaluxBrown border-2 text-cristaluxBrown flex items-center justify-center gap-x-4">
           <FontAwesomeIcon
             className="text-xl md:text-2xl lg:text-lg cursor-pointer"
             icon={faChevronLeft}
