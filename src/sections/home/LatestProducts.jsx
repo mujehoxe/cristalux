@@ -8,7 +8,9 @@ const LatestProducts = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data = await fetch("/api/v1/products/latest");
+        const data = await fetch(
+          "https://cristalux.store/api/v1/products/latest"
+        );
         setProducts(await data.json());
       } catch (error) {
         setError(error.message);
