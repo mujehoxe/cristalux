@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Slider from "../../components/products/Slider";
-import ErrorMsg from "../../components/fetch/ErrorMsg";
 
 const LatestProducts = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +19,7 @@ const LatestProducts = () => {
 
   return (
     <main>
-      {error && <ErrorMsg />}
+      {/* {error && <ErrorMsg />} */}
       {products && (
         <section className="min-h-[100vh]">
           <div id="latestSection" className="w-[90%] mx-auto text-center mt-5">

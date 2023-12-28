@@ -7,6 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 const FormCheckOut = ({ cart }) => {
   const [selectedWilaya, setSelectedWilaya] = useState(wilayasList[0]); // Use the first wilaya as the default
   const [popUp, setPopUp] = useState(false);
+  const [selectedShipping, setSelectedShipping] = useState(null);
+  const [isShippingSelected, setIsShippingSelected] = useState(false);
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -76,6 +78,8 @@ const FormCheckOut = ({ cart }) => {
 
   let totalPrice = cart.cartTotalAmount + selectedWilaya.shippingPrice;
 
+  console.log(selectedShipping);
+
   return (
     <div className="w-[95%] md:w-[80%] lg:w-[40%] lg:h-[20%] mx-auto py-2 bg-white flex flex-col items-center justify-center rounded-md">
       <h2 className="text-cristaluxBrown capitalize font-semibold text-xl">
@@ -114,35 +118,66 @@ const FormCheckOut = ({ cart }) => {
           minLength={10}
           maxLength={10}
         />
-        <div
-          className={`relative flex items-center justify-between border-2 text-cristaluxBrown font-medium border-cristaluxBrown rounded-md shadow-md w-[300px] p-2 cursor-pointer lg:hover:bg-cristaluxBrown lg:hover:text-cristalux transition-all duration-300`}
-          onClick={() => setPopUp((prev) => !prev)}
-        >
-          <h2 className={``}>
-            {selectedWilaya ? selectedWilaya.name : "Wilayas"}
-          </h2>
-          <FontAwesomeIcon icon={popUp ? faChevronUp : faChevronDown} />
-          {popUp && (
-            <div className="absolute bottom-14 -left-2 shadow-md rounded-md w-[90%] mx-auto bg-white text-cristaluxBrown h-[300px] overflow-y-scroll ">
-              {wilayasList.map((wilaya) => (
-                <ul
-                  key={wilaya.id}
-                  onClick={() => handleItemClick(wilaya.id)}
-                  className={`border-2 ${
-                    selectedWilaya && wilaya.id === selectedWilaya.id
-                      ? "bg-cristaluxBrown text-cristalux"
-                      : ""
-                  } border-cristaluxBrown p-2  cursor-pointer lg:hover:bg-cristaluxBrown lg:hover:text-cristalux transition-all duration-300`}
-                >
-                  <li className="flex items-center justify-between">
-                    <h2 className="text-lg">{wilaya.name}</h2>
-                    <h2 className="text-lg">{wilaya.shippingPrice}</h2>
-                  </li>
-                </ul>
-              ))}
-            </div>
-          )}
+        <div className="flex items-center gap-5">
+          <button
+            onClick={() => {
+              setSelectedShipping("home");
+              setIsShippingSelected((prev) => !prev);
+            }}
+            className="bg-cristaluxBrown text-cristalux w-32 py-2 text-xl capitalize rounded-md"
+          >
+            home
+          </button>
+          <button
+            onClick={() => {
+              setSelectedShipping("office");
+              setIsShippingSelected((prev) => !prev);
+            }}
+            className="bg-cristaluxBrown text-cristalux w-32 py-2 text-xl capitalize rounded-md"
+          >
+            office
+          </button>
         </div>
+        {isShippingSelected && (
+          <div
+            className={`relative flex items-center justify-between border-2 text-cristaluxBrown font-medium border-cristaluxBrown rounded-md shadow-md w-[300px] p-2 cursor-pointer lg:hover:bg-cristaluxBrown lg:hover:text-cristalux transition-all duration-300`}
+            onClick={() => setPopUp((prev) => !prev)}
+          >
+            <h2 className={``}>
+              {selectedWilaya ? selectedWilaya.name : "Wilayas"}
+            </h2>
+            <FontAwesomeIcon icon={popUp ? faChevronUp : faChevronDown} />
+            {popUp && (
+              <div className="absolute bottom-14 -left-2 shadow-md rounded-md w-[90%] mx-auto bg-white text-cristaluxBrown h-[300px] overflow-y-scroll ">
+                {wilayasList.map((wilaya) => (
+                  <ul
+                    key={wilaya.id}
+                    onClick={() => {
+                      handleItemClick(wilaya.id);
+                      setPopUp((prev) => !prev);
+                    }}
+                    className={`border-2 ${
+                      selectedWilaya && wilaya.id === selectedWilaya.id
+                        ? "bg-cristaluxBrown text-cristalux"
+                        : ""
+                    } border-cristaluxBrown p-2  cursor-pointer lg:hover:bg-cristaluxBrown lg:hover:text-cristalux transition-all duration-300`}
+                  >
+                    <li className="flex items-center justify-between">
+                      <h2 className="text-lg">{wilaya.name}</h2>
+                      <h2 className="text-lg">
+                        {selectedShipping === "home"
+                          ? wilaya.shippingPriceHome
+                          : selectedShipping === "office"
+                          ? wilaya.shippingPriceOffice
+                          : ""}
+                      </h2>
+                    </li>
+                  </ul>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         <input
           className="border-2 border-cristaluxBrown rounded-md shadow-md w-[300px] p-2"
           type="text"
