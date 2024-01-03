@@ -21,7 +21,8 @@ jobs:
 
       - name: Build project
         run: npm run build
-      - run: eval $(ssh-agent -s)
+      - name: Rsync Files
+        run: rsync -avz dist/ ***@***:~/client
       
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
