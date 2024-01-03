@@ -33,9 +33,6 @@ jobs:
       
       - name: Add SSH Key
         run: ssh-add ~/.ssh/id_rsa
-      
-      - name: Deploy with rsync
-        run: rsync -avz --info=progress2 dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/client || exit 1
 
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
