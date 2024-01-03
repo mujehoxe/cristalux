@@ -22,7 +22,6 @@ jobs:
       - name: Build project
         run: npm run build
       - run: eval $(ssh-agent -s)
-      - run: ssh-add <(echo "$SSH_PRIVATE_KEY")
       
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
