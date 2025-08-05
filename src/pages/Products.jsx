@@ -93,91 +93,119 @@ const getApiUrl = useCallback(() => {
     "line-clamp-2 xs:line-clamp-1 xs2:line-clamp-2 lg:line-clamp-3";
 
   return (
-    <main className="lg:flex lg:min-h-[100vh]">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <Transition />
-      {isLoading && <h2>loading...</h2>}
+      
+      {/* Loading State */}
+      {isLoading && (
+        <div className="flex items-center justify-center min-h-[50vh]">
+          <div className="loading"></div>
+        </div>
+      )}
+      
+      {/* Error State */}
       {error && <ErrorMsg />}
-      <section className="py-10 lg:w-[80%]">
-        <div className="title">
-          <motion.h1
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-center text-cristaluxBrown capitalize text-3xl font-bold"
-          >
-            {t('products.title')}
-          </motion.h1>
-        </div>
-        <div className="w-[90%] mx-auto mt-5">
-          <motion.p
-            className="text-[#7E7E7E] text-xl"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-          >
-            {t('products.showing', { count: productsPerPage, total: totalProductsNumber })}
-          </motion.p>
-        </div>
-        <div className="lg:hidden">
-          <h2 className="text-center py-5 text-cristaluxBrown font-bold uppercase text-2xl">
-            {t('products.categories')}
-          </h2>
-          <Categories
-            flexDirection={"row"}
-            categories={categories}
-            justifyContent={"center"}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={handleCategoriesChange}
-            setMode={setMode}
-          />
-        </div>
-        <SearchFunc handleSearch={handleSearch} mode={mode} setMode={setMode} />
-        <div className="py-10 flex justify-center items-center flex-wrap gap-x-5 gap-y-5">
-          {productsFound ? (
-            products.map((product, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <ProductCard
+      
+      <div className="container mx-auto px-4 py-8 lg:flex lg:gap-8">
+        {/* Sidebar for desktop */}
+        <aside className="hidden lg:block lg:w-80 lg:flex-shrink-0">
+          <div className="sticky top-8">
+            <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+              <h2 className="font-display text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <span className="w-2 h-8 bg-cristalux rounded-full"></span>
+                {t('products.categories')}
+              </h2>
+              <Categories
+                flexDirection="column"
+                categories={categories}
+                justifyContent="flex-start"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={handleCategoriesChange}
+                setMode={setMode}
+              />
+            </div>
+          </div>
+        </aside>
+        
+        {/* Main content */}
+        <section className="flex-1">
+          {/* Header */}
+          <div className="mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-6"
+            >
+              <h1 className="font-display text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                {t('products.title')}
+              </h1>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                {t('products.showing', { count: productsPerPage, total: totalProductsNumber })}
+              </p>
+            </motion.div>
+          </div>
+          
+          {/* Mobile categories */}
+          <div className="lg:hidden mb-8">
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h2 className="font-display text-xl font-bold text-gray-800 mb-4 text-center">
+                {t('products.categories')}
+              </h2>
+              <Categories
+                flexDirection="row"
+                categories={categories}
+                justifyContent="center"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={handleCategoriesChange}
+                setMode={setMode}
+              />
+            </div>
+          </div>
+          
+          {/* Search */}
+          <div className="mb-8">
+            <SearchFunc handleSearch={handleSearch} mode={mode} setMode={setMode} />
+          </div>
+          
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
+            {productsFound ? (
+              products.map((product, index) => (
+                <motion.div
                   key={product.id}
-                  product={product}
-                  size={cardSize}
-                  lineClamp={lineClamp}
-                />
-              </motion.div>
-            ))
-          ) : (
-            <p className="text-center text-cristaluxBrown font-bold capitalize text-2xl my-5">
-              {t('products.noProducts')}
-            </p>
-          )}
-        </div>
-
-        <ToastContainer position="top-right" autoClose={3000} />
-
-        <Pagination
-          productsPerPage={productsPerPage}
-          totalProducts={totalProductsNumber}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-      </section>
-      <aside className="lg:w-[20%] max-sm:hidden sm:hidden md:hidden lg:block">
-        <h2 className="text-center py-5 text-cristalux font-bold uppercase text-2xl">
-          {t('products.categories')}
-        </h2>
-        <Categories
-          flexDirection={"row"}
-          categories={categories}
-          justifyContent={"center"}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={handleCategoriesChange}
-          setMode={setMode}
-        />
-      </aside>
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex justify-center"
+                >
+                  <ProductCard
+                    product={product}
+                    size="w-full max-w-sm"
+                    lineClamp={lineClamp}
+                  />
+                </motion.div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500 text-xl font-medium">
+                  {t('products.noProducts')}
+                </p>
+              </div>
+            )}
+          </div>
+          
+          {/* Pagination */}
+          <Pagination
+            productsPerPage={productsPerPage}
+            totalProducts={totalProductsNumber}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </section>
+      </div>
+      
+      <ToastContainer position="top-right" autoClose={3000} />
     </main>
   );
 };
