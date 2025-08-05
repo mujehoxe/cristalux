@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 const AnimatedButton = ({
   children,
@@ -82,6 +83,18 @@ const AnimatedButton = ({
       </span>
     </motion.button>
   );
+};
+
+AnimatedButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'outline']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
+  loading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  icon: PropTypes.object,
+  type: PropTypes.string,
 };
 
 export default AnimatedButton;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   addToCartWithQuantity,
@@ -7,9 +7,10 @@ import {
   removeItem,
 } from "../../features/cartSlice";
 import CartDetails from "../cart/CartDetails";
+import PropTypes from "prop-types";
 
 const CheckoutDetails = ({ cart }) => {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [selectedQuantity] = useState(1);
   const dispatch = useDispatch();
 
 
@@ -60,6 +61,19 @@ const CheckoutDetails = ({ cart }) => {
       </div>
     </div>
   );
+};
+
+CheckoutDetails.propTypes = {
+  cart: PropTypes.shape({
+    cartItems: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        price: PropTypes.number.isRequired,
+        cartQuantity: PropTypes.number.isRequired,
+        percentage: PropTypes.number,
+      })
+    ).isRequired,
+  }).isRequired,
 };
 
 export default CheckoutDetails;

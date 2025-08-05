@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "./i18n/i18n";
 import { Suspense } from "react";
-import { useTranslation } from "react-i18next";
 import PageTransition from "./components/framerMotion/PageTransition";
 
 const AnimatedRoutes = () => {

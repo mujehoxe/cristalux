@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import wilayasList from "./wilayasList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const FormCheckOut = ({ cart }) => {
   const [selectedWilaya, setSelectedWilaya] = useState(wilayasList[0]); // Use the first wilaya as the default
@@ -231,6 +232,13 @@ const FormCheckOut = ({ cart }) => {
       </div>
     </div>
   );
+};
+
+FormCheckOut.propTypes = {
+  cart: PropTypes.shape({
+    cartItems: PropTypes.array.isRequired,
+    cartTotalAmount: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default FormCheckOut;

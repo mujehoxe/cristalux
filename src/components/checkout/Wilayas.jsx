@@ -10,16 +10,19 @@ const Wilayas = ({ cart }) => {
   const handleItemClick = (wilayaId) => {
     const wilaya = wilayasList.find((wilaya) => wilaya.id === wilayaId);
     setSelectedWilaya(wilaya);
-    setPopUp(false)
+    setPopUp(false);
   };
 
   useEffect(() => {
     // This effect will run after selectedWilaya has been updated
-    selectedWilaya
+    console.log(selectedWilaya);
   }, [selectedWilaya]); // Add selectedWilaya as a dependency for the effect
 
   return (
-
+    <div>
+      {/* Wilaya selector component - implementation needed */}
+      <p>Total: {cart?.cartTotalAmount || 0} DA</p>
+    </div>
   );
 };
 
