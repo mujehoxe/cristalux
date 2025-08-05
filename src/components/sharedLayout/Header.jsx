@@ -10,8 +10,16 @@ import { motion } from "framer-motion";
 import LanguageSwitcher from "../LanguageSwitcher";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const [navToggle, setNavToggle] = useState(false);
   const cart = useSelector((state) => state.cart);
+  
+  // Update document direction when language changes
+  useEffect(() => {
+    const isRTL = i18n.language === 'ar';
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   const headerVariants = {
     hidden: { y: "-100%", opacity: 0 },
@@ -40,9 +48,14 @@ const Header = () => {
           </span>
         </Link>
       </motion.div>
-      <div className="flex items-center gap-x-4 sm:flex-row-reverse">
+      <div className="flex items-center gap-x-4">
+        {/* Language Switcher */}
+        <div className="hidden sm:block">
+          <LanguageSwitcher />
+        </div>
+        
         <div className="relative cart">
-          <Link to={"cart"}>
+          <Link to={"cart"} title={t('navigation.cart')}>
             <img src={myCart} className="w-[30px] cursor-pointer" alt="cart" />
           </Link>
           <div className="absolute w-[27px] h-[27px] -top-[30%] -right-[50%]  flex items-center justify-center bg-cristalux border-2 border-black rounded-[50%]">
@@ -69,7 +82,7 @@ const Header = () => {
                 className={({ isActive }) => (isActive ? "font-bold" : "")}
               >
                 <li className="menuLink max-sm:text-black sm:text-cristalux">
-                  accueil
+                  {t('navigation.home')}
                 </li>
               </NavLink>
               <NavLink
@@ -77,7 +90,7 @@ const Header = () => {
                 className={({ isActive }) => (isActive ? "font-bold" : "")}
               >
                 <li className="menuLink max-sm:text-black sm:text-cristalux">
-                  À propos de nous
+                  {t('footer.aboutUs')}
                 </li>
               </NavLink>
               <NavLink
@@ -85,9 +98,14 @@ const Header = () => {
                 className={({ isActive }) => (isActive ? "font-bold" : "")}
               >
                 <li className="menuLink max-sm:text-black sm:text-cristalux">
-                  nos produits
+                  {t('navigation.products')}
                 </li>
               </NavLink>
+              
+              {/* Mobile Language Switcher */}
+              <div className="sm:hidden mt-4">
+                <LanguageSwitcher />
+              </div>
             </div>
           </ul>
         </nav>
