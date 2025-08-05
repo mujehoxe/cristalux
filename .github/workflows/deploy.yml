@@ -39,13 +39,34 @@ jobs:
           tar -czf ../deployment.tar.gz .
           cd ..
 
+      - name: Validate deployment secrets
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: |
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "❌ SSH_PRIVATE_KEY secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_HOST }}" ]; then
+            echo "❌ SSH_HOST secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_USER }}" ]; then
+            echo "❌ SSH_USER secret is not set"
+            exit 1
+          fi
+          echo "✅ All required secrets are configured"
+
       - name: Install SSH key
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           name: id_rsa
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          known_hosts: "just-a-placeholder-so-we-dont-get-errors"
+
+      - name: Adding Known Hosts
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to production server
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
