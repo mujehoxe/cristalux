@@ -38,13 +38,13 @@ body {
 .menuLink {
     font-size: 17px;
     text-transform: capitalize;
-    transition-duration: 200ms;
+  transition: all 0.4s ease-in-out;
     margin-top: 5px;
 }
 
 .menuLink:hover {
     font-weight: bold;
-    transition-duration: 200ms;
+  transition: all 0.4s ease-in-out;
 }
 
 
@@ -76,7 +76,7 @@ aside {
     border: 6px solid;
     border-color: #fcf38b transparent #fcf38b transparent;
     border-radius: 50%;
-    animation: spin 1s ease infinite;
+    animation: spin 1.5s linear infinite;
 }
 
 
@@ -103,15 +103,15 @@ aside {
 }
 
 .feature:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 
 .cardHover:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
     background-color: black;
-    transition: all ease 300ms;
+    transition: all 0.5s ease;
 }
 
 

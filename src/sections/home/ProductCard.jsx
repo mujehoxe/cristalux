@@ -4,8 +4,10 @@ import { addToCartWithQuantity, getTotal } from "../../features/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ product, size, lineClamp }) => {
+  const { t } = useTranslation();
   const [selectedQuantity, setSelectedQuantity] = useState(0);
   const discount = product.percentage;
 
@@ -27,7 +29,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
 
   return (
     <div
-      className={`bg-white rounded-lg  shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg cursor-pointer  ${size}`}
+      className={`bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:scale-105 cursor-pointer ${size}`}
     >
       <div className="relative bg-cristaluxBrown h-[65%]  w-full">
         <img
@@ -45,7 +47,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
             onClick={() => handleAddToCart(product)}
             className="px-6 py-2 font-bold bg-cristalux rounded-lg hover:bg-yellow-500 transition-colors duration-300"
           >
-            Ajouter au panier
+            {t('products.addToCart')}
           </button>
         </div>
       </div>
@@ -74,7 +76,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
             to={`/products/${product.id}`}
             onClick={scrollToTop}
           >
-            Voir les détails
+            {t('products.viewDetails')}
           </Link>
         </div>
       </div>

@@ -17,16 +17,16 @@ const Slider = ({ products }) => {
         setSlidesPerView(1);
       } else if (window.innerWidth < 800) {
         setSlidesPerView(2);
-      } else if (window.innerWidth < 1000) {
-        setSlidesPerView(2);
       } else if (window.innerWidth < 1024) {
-        setSlidesPerView(3);
+        setSlidesPerView(2);
       } else if (window.innerWidth < 1200) {
         setSlidesPerView(3);
-      } else if (window.innerWidth < 1300) {
-        setSlidesPerView(4);
       } else if (window.innerWidth < 1400) {
         setSlidesPerView(4);
+      } else if (window.innerWidth < 1600) {
+        setSlidesPerView(4);
+      } else {
+        setSlidesPerView(5);
       }
     };
 
@@ -41,15 +41,19 @@ const Slider = ({ products }) => {
   useEffect(() => {
     const handleSpace = () => {
       if (window.innerWidth < 500) {
-        setSpaceBetween(90);
+        setSpaceBetween(20);
       } else if (window.innerWidth < 800) {
-        setSpaceBetween(10);
+        setSpaceBetween(20);
       } else if (window.innerWidth < 1024) {
-        setSpaceBetween(10);
+        setSpaceBetween(30);
       } else if (window.innerWidth < 1200) {
         setSpaceBetween(40);
       } else if (window.innerWidth < 1400) {
-        setSpaceBetween(120);
+        setSpaceBetween(50);
+      } else if (window.innerWidth < 1600) {
+        setSpaceBetween(60);
+      } else {
+        setSpaceBetween(80);
       }
     };
 
