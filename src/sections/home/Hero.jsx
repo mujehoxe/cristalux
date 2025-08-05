@@ -21,18 +21,20 @@ const Hero = () => {
         animate={"visible"}
         variants={variants}
       >
-        <div>
-          <h1 className="title text-2xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cristalux capitalize">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="font-display text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-cristalux capitalize mb-6 leading-tight tracking-tight text-balance">
             {t('hero.title')}
           </h1>
-          <p className="text-cristalux xs2:text-base text-center text-xs py-5 sm:text-base sm:w-[90%] md:w-[80%] sm:mx-auto md:text-xl lg:text-2xl">
+          <p className="font-body text-cristalux text-sm xs2:text-base sm:text-lg md:text-xl lg:text-2xl text-center py-5 sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto leading-relaxed text-pretty opacity-90">
             {t('hero.description')}
           </p>
-          <Link className="" to={"products"}>
-            <button className="lg:my-5 text-cristalux border-2 border-cristalux py-3 px-10 lg:text-xl lg:hover:bg-cristaluxBrown rounded-md transition-all duration-200">
-              {t('hero.shopNow')}
-            </button>
-          </Link>
+          <div className="mt-8 lg:mt-12">
+            <Link to={"products"}>
+              <button className="accent-text bg-transparent text-cristalux border-2 border-cristalux py-4 px-8 lg:py-5 lg:px-12 text-base lg:text-xl font-semibold tracking-wide rounded-lg hover:bg-cristalux hover:text-black transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-cristalux/30">
+                {t('hero.shopNow')}
+              </button>
+            </Link>
+          </div>
         </div>
       </motion.div>
     </section>
