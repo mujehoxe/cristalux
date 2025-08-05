@@ -1,6 +1,7 @@
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 const CartDetails = ({
   cartItem,
@@ -71,6 +72,19 @@ const CartDetails = ({
       </div>
     </motion.div>
   );
+};
+
+CartDetails.propTypes = {
+  cartItem: PropTypes.shape({
+    thumbnail: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    cartQuantity: PropTypes.number.isRequired,
+  }).isRequired,
+  handleIncrease: PropTypes.func.isRequired,
+  handleDecrease: PropTypes.func.isRequired,
+  handleRemoveFromCart: PropTypes.func.isRequired,
+  totalPrice: PropTypes.number.isRequired,
 };
 
 export default CartDetails;

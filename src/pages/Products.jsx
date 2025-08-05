@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ErrorMsg from "../components/fetch/ErrorMsg";
 import ProductCard from "../sections/home/ProductCard";
 import Pagination from "../components/products/Pagination";
@@ -23,10 +23,16 @@ const Products = () => {
   const productsPerPage = 6;
   const [productsFound, setProductsFound] = useState(true);
 
-  useEffect(() => {
-    fetchCategories();
-    fetchProducts();
-  }, [currentPage, mode, keyword, selectedCategory]);
+const getApiUrl = useCallback(() => {
+    switch (mode) {
+      case "search":
+        return `${API_BASE_URL}/products/search?keyword=${keyword}&page=${currentPage}&pageSize=${productsPerPage}`;
+      case "filter":
+        return `${API_BASE_URL}/products/by-category?categoryId=${selectedCategory}&page=${currentPage}&pageSize=${productsPerPage}`;
+      default:
+        return `${API_BASE_URL}/products?page=${currentPage}&pageSize=${productsPerPage}`;
+    }
+  }, [mode, keyword, currentPage, selectedCategory, productsPerPage]);
 
   const fetchCategories = async () => {
     try {
@@ -38,7 +44,7 @@ const Products = () => {
     }
   };
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       setIsLoading(true);
       const apiUrl = getApiUrl();
@@ -58,18 +64,13 @@ const Products = () => {
       setIsLoading(false);
       setProductsFound(false);
     }
-  };
+  }, [getApiUrl]);
 
-  const getApiUrl = () => {
-    switch (mode) {
-      case "search":
-        return `${API_BASE_URL}/products/search?keyword=${keyword}&page=${currentPage}&pageSize=${productsPerPage}`;
-      case "filter":
-        return `${API_BASE_URL}/products/by-category?categoryId=${selectedCategory}&page=${currentPage}&pageSize=${productsPerPage}`;
-      default:
-        return `${API_BASE_URL}/products?page=${currentPage}&pageSize=${productsPerPage}`;
-    }
-  };
+  useEffect(() => {
+    fetchCategories();
+    fetchProducts();
+  }, [fetchProducts]);
+
 
   const handleSearch = (searchKeyword) => {
     setKeyword(searchKeyword);
