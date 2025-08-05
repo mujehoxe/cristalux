@@ -23,7 +23,7 @@ const Footer = () => {
             </span>
           </Link>
           <p className="w-full py-5 md:py-0 md:pb-3 px-5 text-cristalux text-lg md:text-sm  md:my-3 md:w-[220px]">
-            Cristalux - L'élégance du cristal pour votre intérieur. Qualité
+            {t('footer.company')} - L'élégance du cristal pour votre intérieur. Qualité
             et service supérieurs.
           </p>
         </div>
@@ -90,7 +90,6 @@ const Footer = () => {
         </h4>
       </div>
     </footer>
-  );
-}
+  );}
 
 export default Footer
