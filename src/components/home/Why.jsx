@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Why = ({
   title,
@@ -12,6 +13,7 @@ const Why = ({
   xmove,
   number,
 }) => {
+  const { t } = useTranslation();
   const flexDirection = flexRowReverse ? "row-reverse" : "row";
   const [isVisible, setIsVisible] = useState(false);
 

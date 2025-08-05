@@ -3,8 +3,10 @@ import onlineShop from '../../assets/imgs/onlineShop.png'
 import delivery from "../../assets/imgs/delivery.png";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Features = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   
         useEffect(() => {
@@ -43,24 +45,18 @@ const Features = () => {
       <motion.div className="md:grid md:grid-cols-3 md:justify-center md:items-center" initial={"hidden"} animate={isVisible ? "visible" : "hidden"} variants={titleVariants}>
         <Feature
           image={onlineShop}
-          title={"shop online with us"}
-          paragraph={
-            "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Consequat Dolor Odio Odio Malesuada At Condimentum Adipiscing Iaculis Semper."
-          }
+          title={t('features.onlineShop.title')}
+          paragraph={t('features.onlineShop.description')}
         />
         <Feature
           image={delivery}
-          title={"delivery 58 wilaya"}
-          paragraph={
-            "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Consequat Dolor Odio Odio Malesuada At Condimentum Adipiscing Iaculis Semper."
-          }
+          title={t('features.delivery.title')}
+          paragraph={t('features.delivery.description')}
         />
         <Feature
           image={delivery}
-          title={"delivery 58 wilaya"}
-          paragraph={
-            "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit. Consequat Dolor Odio Odio Malesuada At Condimentum Adipiscing Iaculis Semper."
-          }
+          title={t('features.support.title')}
+          paragraph={t('features.support.description')}
         />
       </motion.div>
     </section>

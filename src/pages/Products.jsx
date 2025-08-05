@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import ErrorMsg from "../components/fetch/ErrorMsg";
 import ProductCard from "../sections/home/ProductCard";
 import Pagination from "../components/products/Pagination";
@@ -11,6 +12,7 @@ import { motion } from "framer-motion";
 const API_BASE_URL = "/api/v1";
 
 const Products = () => {
+  const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [totalProductsNumber, setTotalProductsNumber] = useState(0);
   const [mode, setMode] = useState("all");
@@ -103,7 +105,7 @@ const getApiUrl = useCallback(() => {
             transition={{ duration: 1 }}
             className="text-center text-cristaluxBrown capitalize text-3xl font-bold"
           >
-            nous produits
+            {t('products.title')}
           </motion.h1>
         </div>
         <div className="w-[90%] mx-auto mt-5">
@@ -113,12 +115,12 @@ const getApiUrl = useCallback(() => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            Showing {productsPerPage} of {totalProductsNumber}
+            {t('products.showing', { count: productsPerPage, total: totalProductsNumber })}
           </motion.p>
         </div>
         <div className="lg:hidden">
           <h2 className="text-center py-5 text-cristaluxBrown font-bold uppercase text-2xl">
-            categories
+            {t('products.categories')}
           </h2>
           <Categories
             flexDirection={"row"}
@@ -149,7 +151,7 @@ const getApiUrl = useCallback(() => {
             ))
           ) : (
             <p className="text-center text-cristaluxBrown font-bold capitalize text-2xl my-5">
-              No products found.
+              {t('products.noProducts')}
             </p>
           )}
         </div>
@@ -165,7 +167,7 @@ const getApiUrl = useCallback(() => {
       </section>
       <aside className="lg:w-[20%] max-sm:hidden sm:hidden md:hidden lg:block">
         <h2 className="text-center py-5 text-cristalux font-bold uppercase text-2xl">
-          categories
+          {t('products.categories')}
         </h2>
         <Categories
           flexDirection={"row"}

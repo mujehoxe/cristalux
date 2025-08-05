@@ -7,10 +7,10 @@
     "search": "Search products..."
   },
   "hero": {
-    "title": "Welcome to Cristalux",
+    "title": "Everything for your home",
     "subtitle": "Discover Premium Crystal Products",
-    "description": "Experience luxury and elegance with our handcrafted crystal collection",
-    "shopNow": "Shop Now",
+    "description": "Welcome to Cristalux, your ultimate destination for interior decorations of unparalleled elegance.",
+    "shopNow": "See more",
     "learnMore": "Learn More"
   },
   "products": {
@@ -22,7 +22,9 @@
     "outOfStock": "Out of Stock",
     "price": "Price",
     "category": "Category",
-    "description": "Description"
+    "categories": "Categories",
+    "description": "Description",
+    "showing": "Showing {{count}} of {{total}}"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -77,11 +79,50 @@
   "about": {
     "title": "About Cristalux",
     "description": "We are dedicated to providing the finest crystal products with exceptional craftsmanship and unparalleled quality.",
+    "welcomeMessage": "Welcome to our home decoration store. We offer you a careful selection to create an elegant and welcoming space in your home.",
+    "viewMore": "view more",
     "ourMission": "Our Mission",
     "ourVision": "Our Vision",
     "whyChooseUs": "Why Choose Us",
     "quality": "Premium Quality",
     "service": "Excellent Service",
     "delivery": "Fast Delivery"
+  },
+  "latestProducts": {
+    "title": "Latest Products",
+    "description": "Explore our exquisite range. Discover the art of decorating with style. Transform your home into a haven of beauty."
+  },
+  "whyUs": {
+    "chairs": {
+      "title": "STYLISH CHAIRS",
+      "description": "Premium quality chairs that combine comfort with elegant design. Perfect for modern homes and contemporary spaces."
+    },
+    "frames": {
+      "title": "FRAMES",
+      "description": "Beautiful decorative frames to showcase your precious memories and add a touch of sophistication to your walls."
+    },
+    "lamps": {
+      "title": "CONTEMPORARY LAMPS",
+      "description": "Modern lighting solutions that illuminate your space while adding style and ambiance to every room."
+    },
+    "viewMore": "view more >"
+  },
+  "order": {
+    "title": "Order now for express delivery!",
+    "viewMore": "see more >"
+  },
+  "features": {
+    "onlineShop": {
+      "title": "Shop Online With Us",
+      "description": "Experience convenient online shopping with our easy-to-use platform. Browse, select, and order from the comfort of your home."
+    },
+    "delivery": {
+      "title": "Delivery 58 Wilaya",
+      "description": "We deliver to all 58 wilayas across Algeria. Fast, reliable shipping to bring your favorite products right to your doorstep."
+    },
+    "support": {
+      "title": "24/7 Customer Support",
+      "description": "Our dedicated customer service team is available around the clock to assist you with any questions or concerns."
+    }
   }
 }

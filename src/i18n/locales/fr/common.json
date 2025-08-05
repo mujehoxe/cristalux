@@ -7,10 +7,10 @@
     "search": "Rechercher des produits..."
   },
   "hero": {
-    "title": "Bienvenue chez Cristalux",
+    "title": "Tout pour votre maison",
     "subtitle": "Découvrez les Produits en Cristal Premium",
-    "description": "Vivez le luxe et l'élégance avec notre collection de cristaux artisanaux",
-    "shopNow": "Acheter Maintenant",
+    "description": "Bienvenue chez Cristalux, votre destination incontournable pour des décorations d'intérieur d'une élégance inégalée.",
+    "shopNow": "Voir plus",
     "learnMore": "En Savoir Plus"
   },
   "products": {
@@ -22,7 +22,9 @@
     "outOfStock": "Rupture de Stock",
     "price": "Prix",
     "category": "Catégorie",
-    "description": "Description"
+    "categories": "Catégories",
+    "description": "Description",
+    "showing": "Affichage de {{count}} sur {{total}}"
   },
   "cart": {
     "title": "Panier d'Achat",
@@ -77,11 +79,50 @@
   "about": {
     "title": "À Propos de Cristalux",
     "description": "Nous nous consacrons à fournir les plus beaux produits en cristal avec un savoir-faire exceptionnel et une qualité inégalée.",
+    "welcomeMessage": "Bienvenue chez notre magasin de décoration maison. Nous vous proposons une sélection soigneuse pour créer un espace élégant et accueillant chez vous.",
+    "viewMore": "voir plus",
     "ourMission": "Notre Mission",
     "ourVision": "Notre Vision",
     "whyChooseUs": "Pourquoi Nous Choisir",
     "quality": "Qualité Premium",
     "service": "Service Excellent",
     "delivery": "Livraison Rapide"
+  },
+  "latestProducts": {
+    "title": "Derniers Produits",
+    "description": "Explorez notre gamme exquise. Découvrez l'art de décorer avec style. Transformez votre maison en un havre de beauté."
+  },
+  "whyUs": {
+    "chairs": {
+      "title": "CHAISES STYLISH",
+      "description": "Des chaises de qualité premium qui allient confort et design élégant. Parfaites pour les maisons modernes et les espaces contemporains."
+    },
+    "frames": {
+      "title": "CADRES",
+      "description": "De beaux cadres décoratifs pour mettre en valeur vos précieux souvenirs et ajouter une touche de sophistication à vos murs."
+    },
+    "lamps": {
+      "title": "LAMPES CONTEMPORAINES",
+      "description": "Solutions d'éclairage modernes qui illuminent votre espace tout en ajoutant style et ambiance à chaque pièce."
+    },
+    "viewMore": "voir plus >"
+  },
+  "order": {
+    "title": "Commandez maintenant pour une livraison express !",
+    "viewMore": "voir plus >"
+  },
+  "features": {
+    "onlineShop": {
+      "title": "Achetez En Ligne Avec Nous",
+      "description": "Découvrez les achats en ligne pratiques avec notre plateforme facile à utiliser. Parcourez, sélectionnez et commandez depuis le confort de votre domicile."
+    },
+    "delivery": {
+      "title": "Livraison 58 Wilayas",
+      "description": "Nous livrons dans les 58 wilayas d'Algérie. Livraison rapide et fiable pour apporter vos produits préférés directement à votre porte."
+    },
+    "support": {
+      "title": "Support Client 24/7",
+      "description": "Notre équipe de service client dédiée est disponible 24h/24 pour vous aider avec toutes vos questions ou préoccupations."
+    }
   }
 }
