@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { NavLink, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import menu from "../../assets/imgs/menu.png";
 import close from "../../assets/imgs/close.png";
 import myCart from "../../assets/imgs/myCart.png";
 import logo from "../../assets/imgs/logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const Header = () => {
   const [navToggle, setNavToggle] = useState(false);

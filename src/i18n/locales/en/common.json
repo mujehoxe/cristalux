@@ -1,0 +1,87 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "search": "Search products..."
+  },
+  "hero": {
+    "title": "Welcome to Cristalux",
+    "subtitle": "Discover Premium Crystal Products",
+    "description": "Experience luxury and elegance with our handcrafted crystal collection",
+    "shopNow": "Shop Now",
+    "learnMore": "Learn More"
+  },
+  "products": {
+    "title": "Our Products",
+    "loadMore": "Load More",
+    "noProducts": "No products found",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
+    "outOfStock": "Out of Stock",
+    "price": "Price",
+    "category": "Category",
+    "description": "Description"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "continueShopping": "Continue Shopping",
+    "proceedToCheckout": "Proceed to Checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "personalInfo": "Personal Information",
+    "shippingInfo": "Shipping Information",
+    "paymentInfo": "Payment Information",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "country": "Country"
+  },
+  "footer": {
+    "company": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "followUs": "Follow Us",
+    "newsletter": "Subscribe to our newsletter",
+    "subscribe": "Subscribe"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "language": "Language"
+  },
+  "about": {
+    "title": "About Cristalux",
+    "description": "We are dedicated to providing the finest crystal products with exceptional craftsmanship and unparalleled quality.",
+    "ourMission": "Our Mission",
+    "ourVision": "Our Vision",
+    "whyChooseUs": "Why Choose Us",
+    "quality": "Premium Quality",
+    "service": "Excellent Service",
+    "delivery": "Fast Delivery"
+  }
+}

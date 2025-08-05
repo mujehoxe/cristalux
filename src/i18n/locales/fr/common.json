@@ -1,0 +1,87 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "products": "Produits",
+    "cart": "Panier",
+    "checkout": "Commande",
+    "search": "Rechercher des produits..."
+  },
+  "hero": {
+    "title": "Bienvenue chez Cristalux",
+    "subtitle": "Découvrez les Produits en Cristal Premium",
+    "description": "Vivez le luxe et l'élégance avec notre collection de cristaux artisanaux",
+    "shopNow": "Acheter Maintenant",
+    "learnMore": "En Savoir Plus"
+  },
+  "products": {
+    "title": "Nos Produits",
+    "loadMore": "Charger Plus",
+    "noProducts": "Aucun produit trouvé",
+    "addToCart": "Ajouter au Panier",
+    "viewDetails": "Voir les Détails",
+    "outOfStock": "Rupture de Stock",
+    "price": "Prix",
+    "category": "Catégorie",
+    "description": "Description"
+  },
+  "cart": {
+    "title": "Panier d'Achat",
+    "empty": "Votre panier est vide",
+    "total": "Total",
+    "subtotal": "Sous-total",
+    "quantity": "Quantité",
+    "remove": "Supprimer",
+    "continueShopping": "Continuer les Achats",
+    "proceedToCheckout": "Procéder à la Commande"
+  },
+  "checkout": {
+    "title": "Commande",
+    "personalInfo": "Informations Personnelles",
+    "shippingInfo": "Informations de Livraison",
+    "paymentInfo": "Informations de Paiement",
+    "orderSummary": "Résumé de la Commande",
+    "placeOrder": "Passer la Commande",
+    "firstName": "Prénom",
+    "lastName": "Nom de Famille",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "city": "Ville",
+    "postalCode": "Code Postal",
+    "country": "Pays"
+  },
+  "footer": {
+    "company": "Entreprise",
+    "aboutUs": "À Propos",
+    "contact": "Contact",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions de Service",
+    "followUs": "Suivez-Nous",
+    "newsletter": "Abonnez-vous à notre newsletter",
+    "subscribe": "S'abonner"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "close": "Fermer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "language": "Langue"
+  },
+  "about": {
+    "title": "À Propos de Cristalux",
+    "description": "Nous nous consacrons à fournir les plus beaux produits en cristal avec un savoir-faire exceptionnel et une qualité inégalée.",
+    "ourMission": "Notre Mission",
+    "ourVision": "Notre Vision",
+    "whyChooseUs": "Pourquoi Nous Choisir",
+    "quality": "Qualité Premium",
+    "service": "Service Excellent",
+    "delivery": "Livraison Rapide"
+  }
+}

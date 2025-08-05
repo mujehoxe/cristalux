@@ -1,0 +1,87 @@
+{
+  "navigation": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "cart": "السلة",
+    "checkout": "الدفع",
+    "search": "البحث عن المنتجات..."
+  },
+  "hero": {
+    "title": "أهلاً بكم في كريستالكس",
+    "subtitle": "اكتشفوا منتجات الكريستال المميزة",
+    "description": "استمتعوا بالفخامة والأناقة مع مجموعتنا المصنوعة يدوياً من الكريستال",
+    "shopNow": "تسوق الآن",
+    "learnMore": "اعرف المزيد"
+  },
+  "products": {
+    "title": "منتجاتنا",
+    "loadMore": "تحميل المزيد",
+    "noProducts": "لا توجد منتجات",
+    "addToCart": "أضف إلى السلة",
+    "viewDetails": "عرض التفاصيل",
+    "outOfStock": "نفد من المخزون",
+    "price": "السعر",
+    "category": "الفئة",
+    "description": "الوصف"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "total": "المجموع",
+    "subtotal": "المجموع الفرعي",
+    "quantity": "الكمية",
+    "remove": "إزالة",
+    "continueShopping": "متابعة التسوق",
+    "proceedToCheckout": "المتابعة للدفع"
+  },
+  "checkout": {
+    "title": "الدفع",
+    "personalInfo": "المعلومات الشخصية",
+    "shippingInfo": "معلومات الشحن",
+    "paymentInfo": "معلومات الدفع",
+    "orderSummary": "ملخص الطلب",
+    "placeOrder": "تأكيد الطلب",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "postalCode": "الرمز البريدي",
+    "country": "البلد"
+  },
+  "footer": {
+    "company": "الشركة",
+    "aboutUs": "من نحن",
+    "contact": "اتصل بنا",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "followUs": "تابعونا",
+    "newsletter": "اشترك في النشرة الإخبارية",
+    "subscribe": "اشتراك"
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ",
+    "success": "نجح!",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "close": "إغلاق",
+    "next": "التالي",
+    "previous": "السابق",
+    "language": "اللغة"
+  },
+  "about": {
+    "title": "حول كريستالكس",
+    "description": "نحن ملتزمون بتوفير أجود منتجات الكريستال بحرفية استثنائية وجودة لا مثيل لها.",
+    "ourMission": "مهمتنا",
+    "ourVision": "رؤيتنا",
+    "whyChooseUs": "لماذا تختارنا",
+    "quality": "جودة عالية",
+    "service": "خدمة ممتازة",
+    "delivery": "توصيل سريع"
+  }
+}
