@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const Order = () =e {
+const Order = () => {
   const { t } = useTranslation();
   return (
     <section className="overflow-hidden w-[100%] order">
