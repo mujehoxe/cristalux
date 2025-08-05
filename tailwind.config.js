@@ -12,9 +12,10 @@ export default {
         'xl': '1280px',
       },
       fontFamily: {
-        'display': ['Playfair Display', 'Georgia', 'serif'],
-        'body': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        'accent': ['Poppins', 'sans-serif'],
+        'display': ['Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
+        'body': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        'accent': ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', 'monospace'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],

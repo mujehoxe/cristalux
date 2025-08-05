@@ -37,18 +37,23 @@ const SearchFunc = ({ handleSearch, mode, setMode }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-2xl shadow-lg p-6"
+      className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-200/50 p-8"
     >
+      <div className="text-center mb-6">
+        <h2 className="font-display text-2xl font-bold text-gray-800 mb-2">Find Your Perfect Product</h2>
+        <p className="font-body text-gray-600">Search through our curated collection of premium items</p>
+      </div>
+      
       <div className="flex flex-col sm:flex-row gap-4 items-center">
         {/* Search Input */}
         <div className="relative flex-1 w-full">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <FontAwesomeIcon icon={faSearch} className="text-gray-400" />
+          <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+            <FontAwesomeIcon icon={faSearch} className="text-gray-400 text-lg" />
           </div>
           <input
             type="text"
-            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-cristalux focus:ring-4 focus:ring-cristalux/20 outline-none transition-all duration-300 font-body text-gray-700 placeholder-gray-400"
-            placeholder="Search for products..."
+            className="w-full pl-14 pr-6 py-4 border-2 border-gray-200 rounded-2xl focus:border-cristalux focus:ring-4 focus:ring-cristalux/20 outline-none transition-all duration-300 font-body text-gray-700 placeholder-gray-500 text-lg bg-white/80 backdrop-blur-sm"
+            placeholder="Search for products, categories, or styles..."
             value={searchKeyword}
             onChange={(e) => setSearchKeyword(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -57,21 +62,21 @@ const SearchFunc = ({ handleSearch, mode, setMode }) => {
         
         {/* Search Button */}
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-cristalux text-gray-800 px-8 py-3 rounded-xl font-accent font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+          whileHover={{ scale: 1.02, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+          className="bg-gradient-to-r from-cristalux to-yellow-400 text-gray-800 px-10 py-4 rounded-2xl font-accent font-bold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto text-lg min-w-[140px]"
           disabled={isLoading}
           onClick={handleSearchClick}
         >
           {isLoading ? (
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 border-2 border-gray-800 border-t-transparent rounded-full animate-spin"></div>
-              Searching...
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-5 h-5 border-2 border-gray-800 border-t-transparent rounded-full animate-spin"></div>
+              <span className="font-semibold">Searching...</span>
             </div>
           ) : (
-            <div className="flex items-center gap-2">
-              <FontAwesomeIcon icon={faSearch} />
-              Search
+            <div className="flex items-center justify-center gap-3">
+              <FontAwesomeIcon icon={faSearch} className="text-lg" />
+              <span className="font-semibold">Search</span>
             </div>
           )}
         </motion.button>
@@ -80,18 +85,20 @@ const SearchFunc = ({ handleSearch, mode, setMode }) => {
       {/* Clear Search Button */}
       {mode === "search" && (
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="mt-4 text-center"
+          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+          animate={{ opacity: 1, height: "auto", marginTop: 24 }}
+          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+          className="text-center"
         >
-          <button 
-            className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-accent font-medium px-4 py-2 rounded-lg transition-all duration-200"
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 font-accent font-semibold px-6 py-3 rounded-xl transition-all duration-200 border border-red-200 hover:border-red-300"
             onClick={clearSearch}
           >
             <FontAwesomeIcon icon={faTimes} />
-            Clear Search
-          </button>
+            Clear Search Results
+          </motion.button>
         </motion.div>
       )}
     </motion.div>

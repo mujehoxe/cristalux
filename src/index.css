@@ -44,10 +44,12 @@
     overflow-x: hidden;
     font-family: var(--body-font);
     font-weight: 400;
-    line-height: 1.6;
-    color: #1f2937;
+    line-height: 1.7;
+    color: #374151;
+    background-color: #fefefe;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   /* Heading hierarchy */
