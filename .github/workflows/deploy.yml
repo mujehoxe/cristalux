@@ -66,7 +66,37 @@ jobs:
 
       - name: Adding Known Hosts
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        run: |
+          echo "🔍 Attempting to scan SSH host: ${{ secrets.SSH_HOST }}"
+          if [ -z "${{ secrets.SSH_HOST }}" ]; then
+            echo "❌ SSH_HOST is empty or not set"
+            exit 1
+          fi
+          
+          echo "📡 Running ssh-keyscan for host: ${{ secrets.SSH_HOST }}"
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>&1 || {
+            echo "❌ ssh-keyscan failed. Possible issues:"
+            echo "   - Host ${{ secrets.SSH_HOST }} is not reachable"
+            echo "   - SSH service is not running on port 22"
+            echo "   - Firewall blocking connection"
+            echo "   - Invalid SSH_HOST secret value"
+            exit 1
+          }
+          echo "✅ Successfully added ${{ secrets.SSH_HOST }} to known_hosts"
+
+      - name: Test SSH connection
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: |
+          echo "🔗 Testing SSH connection to ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          ssh -o ConnectTimeout=10 -o BatchMode=yes ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'echo "SSH connection successful!"' || {
+            echo "❌ SSH connection failed. Please check:"
+            echo "   - SSH_HOST: ${{ secrets.SSH_HOST }}"
+            echo "   - SSH_USER: ${{ secrets.SSH_USER }}"
+            echo "   - SSH private key is correct"
+            echo "   - Server allows SSH connections"
+            exit 1
+          }
+          echo "✅ SSH connection test passed"
 
       - name: Deploy to production server
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
