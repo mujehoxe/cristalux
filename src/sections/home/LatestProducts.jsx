@@ -23,12 +23,12 @@ const LatestProducts = () => {
     <main>
       {/* {error && <ErrorMsg />} */}
       {products && (
-        <section className="min-h-[100vh]">
+        <section className="min-h-[100vh] bg-gradient-to-b from-gray-900 to-black">
           <div id="latestSection" className="w-[90%] mx-auto text-center mt-5">
-            <h2 className="title capitalize text-3xl xs2:text-4xl md:text-5xl  font-bold text-[#373737]">
+            <h2 className="title capitalize text-3xl xs2:text-4xl md:text-5xl font-bold text-white">
               {t('latestProducts.title')}
             </h2>
-            <p className="capitalize py-1 text-sm xs2:text-sm md:text-base lg:text-lg md:w-[70%] md:mx-auto">
+            <p className="capitalize py-1 text-sm xs2:text-sm md:text-base lg:text-lg md:w-[70%] md:mx-auto text-gray-300">
               {t('latestProducts.description')}
             </p>
           </div>

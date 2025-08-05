@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 const Features = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
+  const featureStyles = "text-white bg-gray-800 rounded-lg shadow-md p-5";
   
         useEffect(() => {
           const handleScroll = () => {
@@ -41,7 +42,7 @@ const Features = () => {
           },
         };
   return (
-    <section id="features" className="py-10">
+    <section id="features" className="py-10 bg-gradient-to-b from-black to-gray-900">
       <motion.div className="md:grid md:grid-cols-3 md:justify-center md:items-center" initial={"hidden"} animate={isVisible ? "visible" : "hidden"} variants={titleVariants}>
         <Feature
           image={onlineShop}
