@@ -93,7 +93,7 @@ const getApiUrl = useCallback(() => {
     "line-clamp-2 xs:line-clamp-1 xs2:line-clamp-2 lg:line-clamp-3";
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <Transition />
       
       {/* Hero Section */}
