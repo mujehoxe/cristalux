@@ -34,7 +34,7 @@ const Header = () => {
   };
 
   return (
-    <motion.header className="header w-full bg-cristaluxBrown min-h-[40px] flex items-center justify-between z-20  px-3 py-4 sm:px-7 md:px-10 overflow-x-hidden">
+    <motion.header className="header w-full bg-cristaluxBrown min-h-[40px] flex items-center justify-between z-20 px-3 py-4 sm:px-7 md:px-10 overflow-x-hidden relative">
       <motion.div
         className="logo"
         initial={"hidden"}
@@ -48,9 +48,9 @@ const Header = () => {
           </span>
         </Link>
       </motion.div>
-      <div className="flex items-center gap-x-4">
+      <div className="flex items-center gap-x-4 relative">
         {/* Language Switcher */}
-        <div className="hidden sm:block">
+        <div className="hidden sm:block relative">
           <LanguageSwitcher />
         </div>
         
