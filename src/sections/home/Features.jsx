@@ -42,7 +42,7 @@ const Features = () => {
           },
         };
   return (
-    <section id="features" className="py-10 bg-gradient-to-b from-black to-gray-900">
+    <section id="features" className="py-10 bg-black">
       <motion.div className="md:grid md:grid-cols-3 md:justify-center md:items-center" initial={"hidden"} animate={isVisible ? "visible" : "hidden"} variants={titleVariants}>
         <Feature
           image={onlineShop}

@@ -30,7 +30,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
   return (
     <div className={`group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer ${size} h-[500px] flex flex-col`}>
       {/* Image Container */}
-      <div className="relative overflow-hidden h-[280px] bg-gradient-to-br from-gray-100 to-gray-200">
+      <div className="relative overflow-hidden h-[280px] bg-gray-100">
         <img
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           src={"/" + product.thumbnail}
@@ -73,7 +73,7 @@ const ProductCard = ({ product, size, lineClamp }) => {
       
       {/* Content */}
       <div className="p-6 flex flex-col flex-1">
-        <h2 className="font-display text-xl font-bold text-gray-800 mb-2 line-clamp-2">
+        <h2 className="font-accent text-xl font-bold text-gray-800 mb-2 line-clamp-2">
           {product.name}
         </h2>
         

@@ -93,11 +93,11 @@ const getApiUrl = useCallback(() => {
     "line-clamp-2 xs:line-clamp-1 xs2:line-clamp-2 lg:line-clamp-3";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
+    <div className="min-h-screen bg-gray-900">
       <Transition />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-20 mb-12">
+      <section className="relative bg-gray-800 text-white py-20 mb-12">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative container mx-auto px-4 text-center">
           <motion.div
@@ -105,7 +105,7 @@ const getApiUrl = useCallback(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cristalux to-yellow-300 bg-clip-text text-transparent">
+            <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 text-cristalux">
               {t('products.title')}
             </h1>
             <p className="font-body text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -144,7 +144,7 @@ const getApiUrl = useCallback(() => {
                 className="bg-gray-800/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-700/50 p-8"
               >
                 <h2 className="font-display text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  <div className="w-1 h-8 bg-gradient-to-b from-cristalux to-yellow-400 rounded-full"></div>
+                  <div className="w-1 h-8 bg-cristalux rounded-full"></div>
                   {t('products.categories')}
                 </h2>
                 <Categories
@@ -162,7 +162,7 @@ const getApiUrl = useCallback(() => {
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-gradient-to-br from-gray-700/50 to-gray-600/30 rounded-3xl p-6 border border-cristalux/20"
+                className="bg-gray-700/50 rounded-3xl p-6 border border-cristalux/20"
               >
                 <h3 className="font-accent font-semibold text-white mb-4">Collection Stats</h3>
                 <div className="space-y-3 text-sm">
@@ -194,9 +194,9 @@ const getApiUrl = useCallback(() => {
                 className="bg-gray-800/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-700/50 p-6"
               >
                 <h2 className="font-display text-xl font-bold text-white mb-6 text-center flex items-center justify-center gap-3">
-                  <div className="w-1 h-6 bg-gradient-to-b from-cristalux to-yellow-400 rounded-full"></div>
+                  <div className="w-1 h-6 bg-cristalux rounded-full"></div>
                   {t('products.categories')}
-                  <div className="w-1 h-6 bg-gradient-to-b from-cristalux to-yellow-400 rounded-full"></div>
+                  <div className="w-1 h-6 bg-cristalux rounded-full"></div>
                 </h2>
                 <Categories
                   flexDirection="row"
@@ -255,7 +255,7 @@ const getApiUrl = useCallback(() => {
                   className="text-center py-20"
                 >
                   <div className="bg-gray-800/90 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-700/50 p-12 max-w-md mx-auto">
-                    <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="w-20 h-20 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29.82-5.877 2.172M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0112 21c-2.36 0-4.547-.732-6.319-1.994M15 19.128a9.99 9.99 0 00-3-3.124" />
                       </svg>
